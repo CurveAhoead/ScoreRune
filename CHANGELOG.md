@@ -10,3 +10,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.0.0] - 2026-01-20
 
+### Added
+- stable scorecard schema (frozen field names, additive-only)
+- parallel C# runtime (net9.0) producing byte-compatible totals on shared inputs
+- `validate` subcommand for rubric and candidate sanity checks
+- performance pass on dispatch-based scorers
+
