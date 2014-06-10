@@ -16,3 +16,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `validate` subcommand for rubric and candidate sanity checks
 - performance pass on dispatch-based scorers
 
+### Verified
+- `python -m compileall scorerune` succeeds.
+- `dotnet build -c Release` succeeds with 0 warnings and 0 errors.
+- Python and C# runtimes rank the example batch identically.
+
+## [0.6.0] - 2024-05-06
