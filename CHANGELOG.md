@@ -22,3 +22,9 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Python and C# runtimes rank the example batch identically.
 
 ## [0.6.0] - 2024-05-06
+
+### Added
+- `rank` command with stable tie-break on candidate id
+- ASCII score bars and per-criterion evidence sections in the markdown report
+- weight normalization per rubric (total weight no longer required to be 1.0)
+
