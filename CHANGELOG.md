@@ -40,3 +40,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - length evidence with min/max windows
 - deterministic ordering of evidence in all reports
+
+## [0.3.0] - 2018-03-08
+
+### Added
+- weighted criteria with per-criterion scores in `[0, 1]`
+- phrase evidence kind (exact and case-insensitive matching)
+
