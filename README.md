@@ -37,3 +37,19 @@ review pipelines:
   understand"; "word count = 65 (bounds 40..180)"). A reviewer can see *why* a
   candidate scored the way it did.
 - **Portability.** Because the logic is arithmetic over strings, it ports cleanly.
+  The Python and C# engines are line-for-line equivalents, so you can score in
+  whichever runtime your pipeline already uses.
+
+ScoreRune is not a replacement for human judgment or for model-graded evaluation.
+It is the fast, cheap, repeatable first pass: gate obvious failures, rank a batch
+of drafts, and produce a scorecard you can attach to a pull request.
+
+---
+
+## Architecture
+
+ScoreRune is organized as a thin pipeline. Documents come in as JSON or plain
+text, the engine scores each criterion with a pure function, weights are
+normalized and combined, and a reporter renders the result. The same shape is
+implemented twice, once per runtime.
+
