@@ -53,3 +53,19 @@ text, the engine scores each criterion with a pure function, weights are
 normalized and combined, and a reporter renders the result. The same shape is
 implemented twice, once per runtime.
 
+<p align="center">
+  <img src="assets/pipeline.svg" alt="ScoreRune scoring pipeline" width="720"/>
+</p>
+
+```
+                        ┌─────────────────────────────────────────────┐
+                        │                  loader                      │
+   rubric.json  ───────▶│  parse + validate → Rubric                   │
+   candidates.json ────▶│  parse + validate → [Candidate]              │
+                        └───────────────────────┬─────────────────────┘
+                                                 │
+                                                 ▼
+                        ┌─────────────────────────────────────────────┐
+                        │                  engine                      │
+                        │  for each criterion:                         │
+                        │    scorer = dispatch[kind]                   │
