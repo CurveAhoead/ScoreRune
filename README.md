@@ -69,3 +69,18 @@ implemented twice, once per runtime.
                         │                  engine                      │
                         │  for each criterion:                         │
                         │    scorer = dispatch[kind]                   │
+                        │    raw    = scorer(text, params)   ∈ [0,1]   │
+                        │    nw     = weight / Σ weights               │
+                        │    part   = raw · nw                         │
+                        │  total = Σ part                     ∈ [0,1]  │
+                        └───────────────────────┬─────────────────────┘
+                                                 │
+                                                 ▼
+                        ┌─────────────────────────────────────────────┐
+                        │                  report                      │
+                        │  Scorecard / Ranking  →  Markdown | JSON     │
+                        └─────────────────────────────────────────────┘
+```
+
+### Module map (Python)
+
