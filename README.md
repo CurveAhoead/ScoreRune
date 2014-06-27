@@ -84,3 +84,19 @@ implemented twice, once per runtime.
 
 ### Module map (Python)
 
+| module | responsibility |
+|--------|----------------|
+| `scorerune/model.py` | value objects: `Criterion`, `Rubric`, `Candidate`, `CriterionResult`, `Scorecard`, `Ranking`, plus `to_dict`/`from_dict` and validation |
+| `scorerune/loader.py` | JSON/text loading with eager validation and a single aggregated `LoadError` |
+| `scorerune/engine.py` | the four pure scorers, `score_criterion`, `score_candidate`, `rank_candidates` |
+| `scorerune/report.py` | Markdown and JSON renderers with ASCII score bars |
+| `scorerune/cli.py` | `argparse`-based `score` / `rank` / `validate` subcommands |
+
+### Module map (.NET)
+
+| file | responsibility |
+|------|----------------|
+| `runtime/Model.cs` | `record` types mirroring the Python model, annotated for `System.Text.Json` |
+| `runtime/Engine.cs` | the four scorers and ranking logic, reading `params` as `JsonElement` |
+| `runtime/Program.cs` | console entry point with the same subcommands and output formats |
+
