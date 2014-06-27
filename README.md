@@ -100,3 +100,18 @@ implemented twice, once per runtime.
 | `runtime/Engine.cs` | the four scorers and ranking logic, reading `params` as `JsonElement` |
 | `runtime/Program.cs` | console entry point with the same subcommands and output formats |
 
+The engines are deliberately kept in lockstep. When a scorer changes in one
+runtime, the other must change identically — the parity check below is how that
+invariant is verified.
+
+---
+
+## The scoring model
+
+A **rubric** is a named list of **criteria**. Each criterion has a `weight` and a
+`kind`. The kind selects one of four pure scoring functions:
+
+| kind | signal it measures |
+|------|--------------------|
+| `phrase` | presence of literal substrings, in `any` or `all` mode |
+| `length` | word count against a `[min, max]` window, optionally peaked at an ideal |
