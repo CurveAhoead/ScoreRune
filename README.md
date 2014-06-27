@@ -131,3 +131,18 @@ Full semantics for every `params` field live in
 
 ---
 
+## Installation
+
+ScoreRune needs no third-party packages. To run from source you only need the
+interpreters/SDKs you already have.
+
+```bash
+# Python 3.11+ — run straight from the checkout
+python -m scorerune --version
+
+# Optional: install so the `scorerune` command is on PATH
+python -m pip install .
+```
+
+```bash
+# .NET 9 — restore is framework-only, no NuGet packages are pulled
