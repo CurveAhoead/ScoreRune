@@ -146,3 +146,19 @@ python -m pip install .
 
 ```bash
 # .NET 9 — restore is framework-only, no NuGet packages are pulled
+dotnet build -c Release runtime/ScoreRune.Runtime.csproj
+```
+
+---
+
+## Usage
+
+### Rank a batch of candidates
+
+The repository ships a support-reply rubric and three drafts. Rank them:
+
+```bash
+python -m scorerune rank -r examples/rubric.json -c examples/candidates.json
+```
+
+```
