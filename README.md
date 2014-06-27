@@ -115,3 +115,19 @@ A **rubric** is a named list of **criteria**. Each criterion has a `weight` and 
 |------|--------------------|
 | `phrase` | presence of literal substrings, in `any` or `all` mode |
 | `length` | word count against a `[min, max]` window, optionally peaked at an ideal |
+| `keyword_density` | keyword occurrences per 100 words against a target ± tolerance |
+| `structure` | Markdown-ish features: headings, lists, paragraph count |
+
+Each scorer returns a raw value in `[0, 1]` and a list of evidence strings. The
+engine normalizes weights by their sum, so the weighted contribution of a
+criterion is `raw · (weight / Σ weights)`, and the total is the sum of those
+contributions — itself always in `[0, 1]`.
+
+Ranking sorts scorecards by descending total, breaking ties on candidate id so
+the order is stable and reproducible regardless of input ordering.
+
+Full semantics for every `params` field live in
+[`docs/rubric-guide.md`](docs/rubric-guide.md).
+
+---
+
