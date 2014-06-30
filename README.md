@@ -224,3 +224,19 @@ dotnet run -c Release --project runtime/ScoreRune.Runtime.csproj -- \
 | Rank | Candidate | Total |
 |------|-----------|-------|
 | 1 | Draft A (structured) | 90.00% |
+| 2 | Draft C (wordy, no list) | 89.60% |
+| 3 | Draft B (terse) | 0.00% |
+```
+
+---
+
+## Writing your own rubric
+
+A minimal rubric is a JSON object with a `criteria` array. Here is a rubric that
+rewards a technical answer for citing a source, staying concise, and using code
+formatting:
+
+```json
+{
+  "id": "tech-answer-v1",
+  "title": "Technical Answer Quality",
