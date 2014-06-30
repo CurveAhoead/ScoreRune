@@ -178,3 +178,18 @@ scores nearly as well on content but loses the structure criterion because it is
 a single paragraph with no list. Draft B fails everything — it is too short and
 mentions none of the expected phrases.
 
+### Score a single response
+
+```bash
+python -m scorerune score -r examples/rubric.json -c examples/candidate-a.txt
+```
+
+```
+# Scorecard: candidate-a
+
+- Rubric: `support-reply-v1`
+- Candidate: `candidate-a`
+- **Total: 90.00%**
+
+| Criterion | Raw | Weight | Weighted | Bar |
+|-----------|-----|--------|----------|-----|
