@@ -209,3 +209,18 @@ The JSON is emitted with sorted keys and a fixed indent so two runs diff cleanly
 Each scorecard carries `total`, `percent`, and a `results` array with per-criterion
 `raw_score`, `normalized_weight`, `weighted_score`, and `evidence`.
 
+### The .NET runtime
+
+The C# app takes the same flags and produces the same numbers:
+
+```bash
+dotnet run -c Release --project runtime/ScoreRune.Runtime.csproj -- \
+  rank -r examples/rubric.json -c examples/candidates.json
+```
+
+```
+# Ranking for rubric `support-reply-v1`
+
+| Rank | Candidate | Total |
+|------|-----------|-------|
+| 1 | Draft A (structured) | 90.00% |
