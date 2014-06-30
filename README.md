@@ -193,3 +193,19 @@ python -m scorerune score -r examples/rubric.json -c examples/candidate-a.txt
 
 | Criterion | Raw | Weight | Weighted | Bar |
 |-----------|-----|--------|----------|-----|
+| Acknowledges the customer's issue | 1.00 | 0.30 | 0.300 | `####################` |
+| Provides concrete next steps | 1.00 | 0.40 | 0.400 | `####################` |
+| Reasonable reply length | 0.50 | 0.20 | 0.100 | `##########..........` |
+| Readable structure | 1.00 | 0.10 | 0.100 | `####################` |
+```
+
+### JSON output for pipelines
+
+```bash
+python -m scorerune rank -r examples/rubric.json -c examples/candidates.json -f json > ranking.json
+```
+
+The JSON is emitted with sorted keys and a fixed indent so two runs diff cleanly.
+Each scorecard carries `total`, `percent`, and a `results` array with per-criterion
+`raw_score`, `normalized_weight`, `weighted_score`, and `evidence`.
+
