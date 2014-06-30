@@ -162,3 +162,19 @@ python -m scorerune rank -r examples/rubric.json -c examples/candidates.json
 ```
 
 ```
+# Ranking for rubric `support-reply-v1`
+
+| Rank | Candidate | Total |
+|------|-----------|-------|
+| 1 | Draft A (structured) | 90.00% |
+| 2 | Draft C (wordy, no list) | 89.60% |
+| 3 | Draft B (terse) | 0.00% |
+```
+
+Below the table, ScoreRune prints a full scorecard per candidate with a weighted
+table, ASCII bars, and an evidence section. Draft A wins because it acknowledges
+the issue, gives next steps, sits near the ideal length, and uses a list. Draft C
+scores nearly as well on content but loses the structure criterion because it is
+a single paragraph with no list. Draft B fails everything — it is too short and
+mentions none of the expected phrases.
+
