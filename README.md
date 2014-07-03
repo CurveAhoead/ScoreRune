@@ -240,3 +240,19 @@ formatting:
 {
   "id": "tech-answer-v1",
   "title": "Technical Answer Quality",
+  "criteria": [
+    {
+      "id": "cites-source",
+      "title": "Cites a source",
+      "weight": 3.0,
+      "kind": "phrase",
+      "params": { "phrases": ["http", "docs", "reference", "see"], "mode": "any" }
+    },
+    {
+      "id": "concise",
+      "title": "Concise",
+      "weight": 2.0,
+      "kind": "length",
+      "params": { "min_words": 20, "max_words": 120, "ideal_words": 60 }
+    },
+    {
