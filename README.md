@@ -256,3 +256,18 @@ formatting:
       "params": { "min_words": 20, "max_words": 120, "ideal_words": 60 }
     },
     {
+      "id": "uses-code",
+      "title": "Uses code formatting",
+      "weight": 2.0,
+      "kind": "structure",
+      "params": { "require_lists": true }
+    }
+  ]
+}
+```
+
+Validate it before use:
+
+```bash
+python -m scorerune validate -r tech-answer-v1.json
+# rubric 'tech-answer-v1' OK: 3 criteria, total weight 7
