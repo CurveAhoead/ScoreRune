@@ -302,3 +302,19 @@ meant to enable.
 ## Determinism and cross-runtime parity
 
 ScoreRune's central guarantee is that identical inputs yield identical outputs,
+across both runtimes. This is enforced by construction:
+
+- Scorers are pure functions of `(text, params)` with no clocks, randomness, or
+  I/O.
+- Weight normalization and clamping are the same arithmetic in both languages.
+- Ranking uses the same comparison and the same tie-break (`candidate_id`,
+  ordinal).
+- JSON output uses sorted keys and fixed indentation.
+
+The example batch scores `90.00%`, `89.60%`, `0.00%` in that order under both the
+Python engine and the .NET runtime. Run the two `demo` targets in the `Makefile`
+and compare — the ranking tables are identical.
+
+---
+
+## Repository layout
