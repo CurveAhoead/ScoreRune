@@ -271,3 +271,19 @@ Validate it before use:
 ```bash
 python -m scorerune validate -r tech-answer-v1.json
 # rubric 'tech-answer-v1' OK: 3 criteria, total weight 7
+```
+
+The full field reference, including `keyword_density` and every default value, is
+in [`docs/rubric-guide.md`](docs/rubric-guide.md). The command reference is in
+[`docs/cli.md`](docs/cli.md).
+
+---
+
+## How scoring is combined (worked example)
+
+Take the support rubric with weights `3, 4, 2, 1` (sum = 10) and Draft A:
+
+| criterion | raw | normalized weight | contribution |
+|-----------|-----|-------------------|--------------|
+| acknowledges-issue | 1.00 | 0.30 | 0.300 |
+| provides-next-steps | 1.00 | 0.40 | 0.400 |
