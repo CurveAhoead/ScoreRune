@@ -318,3 +318,18 @@ and compare — the ranking tables are identical.
 ---
 
 ## Repository layout
+
+```
+scorerune/
+├── scorerune/                 Python package
+│   ├── __init__.py            public API surface
+│   ├── __main__.py            `python -m scorerune`
+│   ├── model.py               value objects + validation
+│   ├── loader.py              JSON/text loading
+│   ├── engine.py              pure scorers + ranking
+│   ├── report.py              Markdown/JSON renderers
+│   └── cli.py                 argparse CLI
+├── runtime/                   .NET 9 runtime
+│   ├── Model.cs
+│   ├── Engine.cs
+│   ├── Program.cs
