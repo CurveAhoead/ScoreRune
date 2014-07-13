@@ -333,3 +333,19 @@ scorerune/
 │   ├── Model.cs
 │   ├── Engine.cs
 │   ├── Program.cs
+│   └── ScoreRune.Runtime.csproj
+├── examples/                  rubric + candidate fixtures
+├── docs/                      rubric guide + CLI reference
+├── assets/                    animated SVGs referenced above
+├── .github/workflows/ci.yml   compile + smoke-run both runtimes
+├── Makefile                   build/demo/validate helpers
+├── pyproject.toml
+├── CHANGELOG.md
+├── ROADMAP.md
+└── LICENSE                    Apache-2.0
+```
+
+---
+
+## Build and verify
+
