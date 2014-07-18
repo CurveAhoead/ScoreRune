@@ -18,3 +18,15 @@ from typing import Any
 EVIDENCE_KINDS = ("phrase", "length", "keyword_density", "structure")
 
 
+@dataclass(frozen=True)
+class Criterion:
+    """A single scored dimension of a rubric.
+
+    weight     relative importance; the engine normalizes weights per rubric.
+    kind       one of EVIDENCE_KINDS.
+    params     kind-specific configuration (see engine.py for semantics).
+    """
+
+    id: str
+    title: str
+    weight: float
