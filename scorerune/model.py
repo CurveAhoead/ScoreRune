@@ -30,3 +30,16 @@ class Criterion:
     id: str
     title: str
     weight: float
+    kind: str
+    params: dict[str, Any] = field(default_factory=dict)
+    description: str = ""
+
+    def validate(self) -> list[str]:
+        errors: list[str] = []
+        if not self.id:
+            errors.append("criterion is missing an id")
+        if self.weight <= 0:
+            errors.append(f"criterion '{self.id}' weight must be positive")
+        if self.kind not in EVIDENCE_KINDS:
+            errors.append(
+                f"criterion '{self.id}' has unknown kind '{self.kind}'; "
