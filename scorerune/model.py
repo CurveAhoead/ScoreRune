@@ -43,3 +43,16 @@ class Criterion:
         if self.kind not in EVIDENCE_KINDS:
             errors.append(
                 f"criterion '{self.id}' has unknown kind '{self.kind}'; "
+                f"expected one of {', '.join(EVIDENCE_KINDS)}"
+            )
+        return errors
+
+    @staticmethod
+    def from_dict(raw: dict[str, Any]) -> "Criterion":
+        return Criterion(
+            id=str(raw.get("id", "")),
+            title=str(raw.get("title", raw.get("id", ""))),
+            weight=float(raw.get("weight", 1.0)),
+            kind=str(raw.get("kind", "phrase")),
+            params=dict(raw.get("params", {})),
+            description=str(raw.get("description", "")),
