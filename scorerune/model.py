@@ -68,3 +68,16 @@ class Criterion:
             "description": self.description,
         }
 
+
+@dataclass(frozen=True)
+class Rubric:
+    """A named collection of weighted criteria."""
+
+    id: str
+    title: str
+    criteria: tuple[Criterion, ...]
+    description: str = ""
+
+    def validate(self) -> list[str]:
+        errors: list[str] = []
+        if not self.id:
