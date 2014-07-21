@@ -81,3 +81,16 @@ class Rubric:
     def validate(self) -> list[str]:
         errors: list[str] = []
         if not self.id:
+            errors.append("rubric is missing an id")
+        if not self.criteria:
+            errors.append(f"rubric '{self.id}' has no criteria")
+        seen: set[str] = set()
+        for c in self.criteria:
+            if c.id in seen:
+                errors.append(f"rubric '{self.id}' has duplicate criterion id '{c.id}'")
+            seen.add(c.id)
+            errors.extend(c.validate())
+        return errors
+
+    def total_weight(self) -> float:
+        return sum(c.weight for c in self.criteria)
