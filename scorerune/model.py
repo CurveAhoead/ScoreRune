@@ -56,3 +56,15 @@ class Criterion:
             kind=str(raw.get("kind", "phrase")),
             params=dict(raw.get("params", {})),
             description=str(raw.get("description", "")),
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "id": self.id,
+            "title": self.title,
+            "weight": self.weight,
+            "kind": self.kind,
+            "params": self.params,
+            "description": self.description,
+        }
+
