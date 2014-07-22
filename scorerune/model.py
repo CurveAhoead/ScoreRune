@@ -94,3 +94,15 @@ class Rubric:
 
     def total_weight(self) -> float:
         return sum(c.weight for c in self.criteria)
+
+    @staticmethod
+    def from_dict(raw: dict[str, Any]) -> "Rubric":
+        criteria = tuple(Criterion.from_dict(c) for c in raw.get("criteria", []))
+        return Rubric(
+            id=str(raw.get("id", "")),
+            title=str(raw.get("title", raw.get("id", ""))),
+            criteria=criteria,
+            description=str(raw.get("description", "")),
+        )
+
+    def to_dict(self) -> dict[str, Any]:
