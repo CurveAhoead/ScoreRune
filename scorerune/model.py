@@ -106,3 +106,16 @@ class Rubric:
         )
 
     def to_dict(self) -> dict[str, Any]:
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "criteria": [c.to_dict() for c in self.criteria],
+        }
+
+
+@dataclass(frozen=True)
+class Candidate:
+    """A single AI response to be reviewed against a rubric."""
+
+    id: str
