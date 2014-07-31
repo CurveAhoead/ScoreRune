@@ -119,3 +119,16 @@ class Candidate:
     """A single AI response to be reviewed against a rubric."""
 
     id: str
+    text: str
+    label: str = ""
+
+    @staticmethod
+    def from_dict(raw: dict[str, Any]) -> "Candidate":
+        return Candidate(
+            id=str(raw.get("id", "")),
+            text=str(raw.get("text", "")),
+            label=str(raw.get("label", raw.get("id", ""))),
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"id": self.id, "text": self.text, "label": self.label}
