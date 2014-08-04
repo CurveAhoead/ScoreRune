@@ -144,3 +144,16 @@ class CriterionResult:
     weight: float
     normalized_weight: float  # weight / rubric total
     weighted_score: float     # raw_score * normalized_weight
+    evidence: list[str]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "criterion_id": self.criterion_id,
+            "title": self.title,
+            "raw_score": round(self.raw_score, 6),
+            "weight": self.weight,
+            "normalized_weight": round(self.normalized_weight, 6),
+            "weighted_score": round(self.weighted_score, 6),
+            "evidence": self.evidence,
+        }
+
