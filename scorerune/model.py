@@ -132,3 +132,15 @@ class Candidate:
 
     def to_dict(self) -> dict[str, Any]:
         return {"id": self.id, "text": self.text, "label": self.label}
+
+
+@dataclass(frozen=True)
+class CriterionResult:
+    """Outcome of scoring one criterion against one candidate."""
+
+    criterion_id: str
+    title: str
+    raw_score: float          # 0.0 .. 1.0 before weighting
+    weight: float
+    normalized_weight: float  # weight / rubric total
+    weighted_score: float     # raw_score * normalized_weight
