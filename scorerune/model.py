@@ -157,3 +157,16 @@ class CriterionResult:
             "evidence": self.evidence,
         }
 
+
+@dataclass(frozen=True)
+class Scorecard:
+    """Aggregate result for one candidate against a rubric."""
+
+    candidate_id: str
+    label: str
+    rubric_id: str
+    total: float  # 0.0 .. 1.0
+    results: list[CriterionResult]
+
+    def percent(self) -> float:
+        return round(self.total * 100.0, 2)
