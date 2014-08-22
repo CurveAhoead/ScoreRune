@@ -12,3 +12,11 @@ from pathlib import Path
 from typing import Any
 
 from .model import Candidate, Rubric
+
+
+class LoadError(Exception):
+    """Raised when a document is missing, malformed, or fails validation."""
+
+
+def _read_json(path: str | Path) -> Any:
+    p = Path(path)
