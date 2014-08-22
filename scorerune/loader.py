@@ -34,3 +34,10 @@ def load_rubric(path: str | Path) -> Rubric:
         raise LoadError("rubric document must be a JSON object")
     rubric = Rubric.from_dict(raw)
     errors = rubric.validate()
+    if errors:
+        raise LoadError("rubric validation failed:\n  - " + "\n  - ".join(errors))
+    return rubric
+
+
+def load_candidates(path: str | Path) -> list[Candidate]:
+    raw = _read_json(path)
