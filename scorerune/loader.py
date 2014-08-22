@@ -20,3 +20,10 @@ class LoadError(Exception):
 
 def _read_json(path: str | Path) -> Any:
     p = Path(path)
+    if not p.exists():
+        raise LoadError(f"file not found: {p}")
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise LoadError(f"invalid JSON in {p}: {exc}") from exc
+
