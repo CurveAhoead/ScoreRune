@@ -27,3 +27,10 @@ def _read_json(path: str | Path) -> Any:
     except json.JSONDecodeError as exc:
         raise LoadError(f"invalid JSON in {p}: {exc}") from exc
 
+
+def load_rubric(path: str | Path) -> Rubric:
+    raw = _read_json(path)
+    if not isinstance(raw, dict):
+        raise LoadError("rubric document must be a JSON object")
+    rubric = Rubric.from_dict(raw)
+    errors = rubric.validate()
