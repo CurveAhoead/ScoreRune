@@ -41,3 +41,10 @@ def load_rubric(path: str | Path) -> Rubric:
 
 def load_candidates(path: str | Path) -> list[Candidate]:
     raw = _read_json(path)
+    # Accept either a bare list or an object with a "candidates" array.
+    if isinstance(raw, dict):
+        raw = raw.get("candidates", [])
+    if not isinstance(raw, list):
+        raise LoadError("candidate document must be a JSON array or "
+                        "an object with a 'candidates' array")
+    candidates: list[Candidate] = []
