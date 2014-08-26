@@ -55,3 +55,10 @@ def load_candidates(path: str | Path) -> list[Candidate]:
             errors.append(f"candidate #{i} is not an object")
             continue
         cand = Candidate.from_dict(item)
+        if not cand.id:
+            errors.append(f"candidate #{i} is missing an id")
+        if cand.id in seen:
+            errors.append(f"duplicate candidate id '{cand.id}'")
+        seen.add(cand.id)
+        candidates.append(cand)
+    if errors:
