@@ -48,3 +48,10 @@ def load_candidates(path: str | Path) -> list[Candidate]:
         raise LoadError("candidate document must be a JSON array or "
                         "an object with a 'candidates' array")
     candidates: list[Candidate] = []
+    seen: set[str] = set()
+    errors: list[str] = []
+    for i, item in enumerate(raw):
+        if not isinstance(item, dict):
+            errors.append(f"candidate #{i} is not an object")
+            continue
+        cand = Candidate.from_dict(item)
