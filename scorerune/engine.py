@@ -16,3 +16,14 @@ length          params: min_words, max_words, ideal_words (optional)
                          bounds.
 keyword_density params: keywords (list[str]), target (float, occurrences per 100
                          words), tolerance (float)
+                score  = 1.0 when measured density is within tolerance of target,
+                         linear falloff outside.
+structure       params: require_lists (bool), require_headings (bool),
+                         min_paragraphs (int)
+                score  = fraction of satisfied structural requirements.
+"""
+
+from __future__ import annotations
+
+import re
+
