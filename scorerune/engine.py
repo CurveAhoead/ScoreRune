@@ -27,3 +27,14 @@ from __future__ import annotations
 
 import re
 
+from .model import (
+    Candidate,
+    Criterion,
+    CriterionResult,
+    Ranking,
+    Rubric,
+    Scorecard,
+)
+
+_WORD_RE = re.compile(r"[A-Za-z0-9']+")
+_HEADING_RE = re.compile(r"^\s{0,3}#{1,6}\s+\S", re.MULTILINE)
