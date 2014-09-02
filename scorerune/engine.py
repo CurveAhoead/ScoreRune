@@ -38,3 +38,14 @@ from .model import (
 
 _WORD_RE = re.compile(r"[A-Za-z0-9']+")
 _HEADING_RE = re.compile(r"^\s{0,3}#{1,6}\s+\S", re.MULTILINE)
+_LIST_RE = re.compile(r"^\s*(?:[-*+]|\d+\.)\s+\S", re.MULTILINE)
+
+
+def _words(text: str) -> list[str]:
+    return _WORD_RE.findall(text)
+
+
+def _clamp01(x: float) -> float:
+    return 0.0 if x < 0.0 else 1.0 if x > 1.0 else x
+
+
