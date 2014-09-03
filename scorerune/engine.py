@@ -49,3 +49,13 @@ def _clamp01(x: float) -> float:
     return 0.0 if x < 0.0 else 1.0 if x > 1.0 else x
 
 
+def _score_phrase(text: str, params: dict) -> tuple[float, list[str]]:
+    phrases = [str(p) for p in params.get("phrases", [])]
+    if not phrases:
+        return 0.0, ["no phrases configured"]
+    case_sensitive = bool(params.get("case_sensitive", False))
+    haystack = text if case_sensitive else text.lower()
+    found: list[str] = []
+    missing: list[str] = []
+    for p in phrases:
+        needle = p if case_sensitive else p.lower()
