@@ -59,3 +59,14 @@ def _score_phrase(text: str, params: dict) -> tuple[float, list[str]]:
     missing: list[str] = []
     for p in phrases:
         needle = p if case_sensitive else p.lower()
+        if needle in haystack:
+            found.append(p)
+        else:
+            missing.append(p)
+    mode = str(params.get("mode", "all")).lower()
+    if mode == "any":
+        score = 1.0 if found else 0.0
+    else:
+        score = len(found) / len(phrases)
+    evidence = [f"found: {', '.join(found) or 'none'}"]
+    if missing:
