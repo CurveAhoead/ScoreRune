@@ -81,3 +81,14 @@ def _score_length(text: str, params: dict) -> tuple[float, list[str]]:
     ideal = params.get("ideal_words")
     if ideal is not None:
         ideal = int(ideal)
+        if n == ideal:
+            score = 1.0
+        elif n < ideal:
+            span = max(ideal - lo, 1)
+            score = _clamp01((n - lo) / span)
+        else:
+            span = max(hi - ideal, 1)
+            score = _clamp01((hi - n) / span)
+    else:
+        if lo <= n <= hi:
+            score = 1.0
