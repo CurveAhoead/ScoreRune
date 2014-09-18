@@ -70,3 +70,14 @@ def _score_phrase(text: str, params: dict) -> tuple[float, list[str]]:
         score = len(found) / len(phrases)
     evidence = [f"found: {', '.join(found) or 'none'}"]
     if missing:
+        evidence.append(f"missing: {', '.join(missing)}")
+    return _clamp01(score), evidence
+
+
+def _score_length(text: str, params: dict) -> tuple[float, list[str]]:
+    n = len(_words(text))
+    lo = int(params.get("min_words", 0))
+    hi = int(params.get("max_words", 10_000_000))
+    ideal = params.get("ideal_words")
+    if ideal is not None:
+        ideal = int(ideal)
