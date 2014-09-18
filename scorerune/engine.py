@@ -92,3 +92,14 @@ def _score_length(text: str, params: dict) -> tuple[float, list[str]]:
     else:
         if lo <= n <= hi:
             score = 1.0
+        elif n < lo:
+            score = _clamp01(n / lo) if lo > 0 else 0.0
+        else:
+            over = n - hi
+            score = _clamp01(1.0 - over / max(hi, 1))
+    return score, [f"word count = {n} (bounds {lo}..{hi}"
+                   + (f", ideal {ideal})" if ideal is not None else ")")]
+
+
+def _score_keyword_density(text: str, params: dict) -> tuple[float, list[str]]:
+    keywords = [str(k).lower() for k in params.get("keywords", [])]
