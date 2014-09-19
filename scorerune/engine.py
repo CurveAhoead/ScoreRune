@@ -135,3 +135,14 @@ def _score_structure(text: str, params: dict) -> tuple[float, list[str]]:
     if not checks:
         return 0.0, ["no structural requirements configured"]
     return sum(1 for c in checks if c) / len(checks), evidence
+
+
+_DISPATCH = {
+    "phrase": _score_phrase,
+    "length": _score_length,
+    "keyword_density": _score_keyword_density,
+    "structure": _score_structure,
+}
+
+
+def score_criterion(criterion: Criterion, text: str,
