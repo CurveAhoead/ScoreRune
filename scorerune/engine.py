@@ -114,3 +114,13 @@ def _score_keyword_density(text: str, params: dict) -> tuple[float, list[str]]:
     return score, [f"density = {density:.2f}/100 words "
                    f"(target {target:.2f} +/- {tol:.2f}, hits {hits})"]
 
+
+def _score_structure(text: str, params: dict) -> tuple[float, list[str]]:
+    checks: list[bool] = []
+    evidence: list[str] = []
+    if params.get("require_headings"):
+        ok = _HEADING_RE.search(text) is not None
+        checks.append(ok)
+        evidence.append(f"headings: {'yes' if ok else 'no'}")
+    if params.get("require_lists"):
+        ok = _LIST_RE.search(text) is not None
