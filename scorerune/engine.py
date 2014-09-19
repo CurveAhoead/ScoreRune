@@ -103,3 +103,14 @@ def _score_length(text: str, params: dict) -> tuple[float, list[str]]:
 
 def _score_keyword_density(text: str, params: dict) -> tuple[float, list[str]]:
     keywords = [str(k).lower() for k in params.get("keywords", [])]
+    words = [w.lower() for w in _words(text)]
+    total = len(words) or 1
+    hits = sum(1 for w in words if w in keywords)
+    density = hits / total * 100.0
+    target = float(params.get("target", 2.0))
+    tol = float(params.get("tolerance", 1.0)) or 1.0
+    diff = abs(density - target)
+    score = _clamp01(1.0 - max(diff - tol, 0.0) / max(target, 1.0))
+    return score, [f"density = {density:.2f}/100 words "
+                   f"(target {target:.2f} +/- {tol:.2f}, hits {hits})"]
+
