@@ -124,3 +124,14 @@ def _score_structure(text: str, params: dict) -> tuple[float, list[str]]:
         evidence.append(f"headings: {'yes' if ok else 'no'}")
     if params.get("require_lists"):
         ok = _LIST_RE.search(text) is not None
+        checks.append(ok)
+        evidence.append(f"lists: {'yes' if ok else 'no'}")
+    min_paras = int(params.get("min_paragraphs", 0))
+    if min_paras > 0:
+        paras = [b for b in re.split(r"\n\s*\n", text.strip()) if b.strip()]
+        ok = len(paras) >= min_paras
+        checks.append(ok)
+        evidence.append(f"paragraphs: {len(paras)} (need {min_paras})")
+    if not checks:
+        return 0.0, ["no structural requirements configured"]
+    return sum(1 for c in checks if c) / len(checks), evidence
