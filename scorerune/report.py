@@ -10,3 +10,9 @@ import json
 
 from .model import Ranking, Scorecard
 
+
+def _bar(fraction: float, width: int = 20) -> str:
+    fraction = 0.0 if fraction < 0 else 1.0 if fraction > 1 else fraction
+    filled = round(fraction * width)
+    return "#" * filled + "." * (width - filled)
+
