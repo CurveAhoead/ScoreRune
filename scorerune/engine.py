@@ -146,3 +146,14 @@ _DISPATCH = {
 
 
 def score_criterion(criterion: Criterion, text: str,
+                    normalized_weight: float) -> CriterionResult:
+    scorer = _DISPATCH[criterion.kind]
+    raw, evidence = scorer(text, criterion.params)
+    raw = _clamp01(raw)
+    return CriterionResult(
+        criterion_id=criterion.id,
+        title=criterion.title,
+        raw_score=raw,
+        weight=criterion.weight,
+        normalized_weight=normalized_weight,
+        weighted_score=raw * normalized_weight,
