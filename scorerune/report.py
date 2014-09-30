@@ -16,3 +16,10 @@ def _bar(fraction: float, width: int = 20) -> str:
     filled = round(fraction * width)
     return "#" * filled + "." * (width - filled)
 
+
+def scorecard_markdown(card: Scorecard) -> str:
+    lines: list[str] = []
+    lines.append(f"# Scorecard: {card.label}")
+    lines.append("")
+    lines.append(f"- Rubric: `{card.rubric_id}`")
+    lines.append(f"- Candidate: `{card.candidate_id}`")
