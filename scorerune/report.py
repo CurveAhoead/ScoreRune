@@ -23,3 +23,9 @@ def scorecard_markdown(card: Scorecard) -> str:
     lines.append("")
     lines.append(f"- Rubric: `{card.rubric_id}`")
     lines.append(f"- Candidate: `{card.candidate_id}`")
+    lines.append(f"- **Total: {card.percent():.2f}%**")
+    lines.append("")
+    lines.append("| Criterion | Raw | Weight | Weighted | Bar |")
+    lines.append("|-----------|-----|--------|----------|-----|")
+    for r in card.results:
+        lines.append(
