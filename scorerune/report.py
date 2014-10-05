@@ -29,3 +29,9 @@ def scorecard_markdown(card: Scorecard) -> str:
     lines.append("|-----------|-----|--------|----------|-----|")
     for r in card.results:
         lines.append(
+            f"| {r.title} | {r.raw_score:.2f} | {r.normalized_weight:.2f} "
+            f"| {r.weighted_score:.3f} | `{_bar(r.raw_score)}` |"
+        )
+    lines.append("")
+    lines.append("## Evidence")
+    lines.append("")
