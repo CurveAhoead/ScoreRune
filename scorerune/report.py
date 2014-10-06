@@ -41,3 +41,9 @@ def scorecard_markdown(card: Scorecard) -> str:
             lines.append(f"- {e}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def ranking_markdown(ranking: Ranking) -> str:
+    lines: list[str] = []
+    lines.append(f"# Ranking for rubric `{ranking.rubric_id}`")
+    lines.append("")
