@@ -35,3 +35,9 @@ def scorecard_markdown(card: Scorecard) -> str:
     lines.append("")
     lines.append("## Evidence")
     lines.append("")
+    for r in card.results:
+        lines.append(f"### {r.title}")
+        for e in r.evidence:
+            lines.append(f"- {e}")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
