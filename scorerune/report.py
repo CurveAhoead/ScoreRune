@@ -47,3 +47,9 @@ def ranking_markdown(ranking: Ranking) -> str:
     lines: list[str] = []
     lines.append(f"# Ranking for rubric `{ranking.rubric_id}`")
     lines.append("")
+    lines.append("| Rank | Candidate | Total |")
+    lines.append("|------|-----------|-------|")
+    for i, card in enumerate(ranking.scorecards):
+        lines.append(f"| {i + 1} | {card.label} | {card.percent():.2f}% |")
+    lines.append("")
+    for card in ranking.scorecards:
