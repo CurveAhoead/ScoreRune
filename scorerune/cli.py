@@ -17,3 +17,12 @@ import sys
 
 from . import __version__
 from .engine import rank_candidates, score_candidate
+from .loader import (
+    LoadError,
+    load_candidate_text,
+    load_candidates,
+    load_rubric,
+)
+from .report import (
+    ranking_json,
+    ranking_markdown,
