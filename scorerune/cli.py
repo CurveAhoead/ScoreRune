@@ -26,3 +26,11 @@ from .loader import (
 from .report import (
     ranking_json,
     ranking_markdown,
+    scorecard_json,
+    scorecard_markdown,
+)
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="scorerune",
