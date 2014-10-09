@@ -9,3 +9,11 @@ validate Load a rubric (and optional candidates) and report validation status.
 Output format is selectable with --format {md,json}. All commands read only
 local files and emit to stdout, so they compose with shell pipelines.
 """
+
+from __future__ import annotations
+
+import argparse
+import sys
+
+from . import __version__
+from .engine import rank_candidates, score_candidate
