@@ -34,3 +34,11 @@ from .report import (
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="scorerune",
+        description="Deterministic rubric engine for AI response review.",
+    )
+    parser.add_argument("--version", action="version",
+                        version=f"scorerune {__version__}")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    p_score = sub.add_parser("score", help="score one candidate")
+    p_score.add_argument("-r", "--rubric", required=True, help="rubric JSON path")
