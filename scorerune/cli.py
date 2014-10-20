@@ -42,3 +42,12 @@ def _build_parser() -> argparse.ArgumentParser:
 
     p_score = sub.add_parser("score", help="score one candidate")
     p_score.add_argument("-r", "--rubric", required=True, help="rubric JSON path")
+    p_score.add_argument("-c", "--candidate", required=True,
+                         help="candidate text file path")
+    p_score.add_argument("--id", default="", help="candidate id override")
+    p_score.add_argument("-f", "--format", choices=("md", "json"), default="md")
+
+    p_rank = sub.add_parser("rank", help="score and rank a batch")
+    p_rank.add_argument("-r", "--rubric", required=True, help="rubric JSON path")
+    p_rank.add_argument("-c", "--candidates", required=True,
+                        help="candidates JSON path")
