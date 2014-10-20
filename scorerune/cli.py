@@ -51,3 +51,11 @@ def _build_parser() -> argparse.ArgumentParser:
     p_rank.add_argument("-r", "--rubric", required=True, help="rubric JSON path")
     p_rank.add_argument("-c", "--candidates", required=True,
                         help="candidates JSON path")
+    p_rank.add_argument("-f", "--format", choices=("md", "json"), default="md")
+
+    p_val = sub.add_parser("validate", help="validate a rubric/candidates")
+    p_val.add_argument("-r", "--rubric", required=True, help="rubric JSON path")
+    p_val.add_argument("-c", "--candidates", default="",
+                       help="optional candidates JSON path")
+
+    return parser
