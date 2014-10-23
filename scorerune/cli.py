@@ -59,3 +59,12 @@ def _build_parser() -> argparse.ArgumentParser:
                        help="optional candidates JSON path")
 
     return parser
+
+
+def _cmd_score(args: argparse.Namespace) -> int:
+    rubric = load_rubric(args.rubric)
+    candidate = load_candidate_text(args.candidate, args.id)
+    card = score_candidate(rubric, candidate)
+    out = scorecard_json(card) if args.format == "json" else scorecard_markdown(card)
+    sys.stdout.write(out)
+    return 0
