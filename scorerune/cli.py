@@ -68,3 +68,11 @@ def _cmd_score(args: argparse.Namespace) -> int:
     out = scorecard_json(card) if args.format == "json" else scorecard_markdown(card)
     sys.stdout.write(out)
     return 0
+
+
+def _cmd_rank(args: argparse.Namespace) -> int:
+    rubric = load_rubric(args.rubric)
+    candidates = load_candidates(args.candidates)
+    ranking = rank_candidates(rubric, candidates)
+    out = ranking_json(ranking) if args.format == "json" else ranking_markdown(ranking)
+    sys.stdout.write(out)
