@@ -85,3 +85,11 @@ def _cmd_validate(args: argparse.Namespace) -> int:
         f"rubric '{rubric.id}' OK: {len(rubric.criteria)} criteria, "
         f"total weight {rubric.total_weight():g}\n"
     )
+    if args.candidates:
+        candidates = load_candidates(args.candidates)
+        sys.stdout.write(f"candidates OK: {len(candidates)} loaded\n")
+    return 0
+
+
+_HANDLERS = {
+    "score": _cmd_score,
