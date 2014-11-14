@@ -9,3 +9,6 @@ description = "Deterministic rubric engine for AI response review."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
+authors = [{ name = "ScoreRune contributors" }]
+keywords = ["rubric", "scoring", "evaluation", "cli", "deterministic"]
+
