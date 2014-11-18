@@ -15,3 +15,9 @@ from .model import (
     CriterionResult,
     Ranking,
     Rubric,
+    Scorecard,
+)
+from .engine import rank_candidates, score_candidate, score_criterion
+from .loader import LoadError, load_candidate_text, load_candidates, load_rubric
+
+__version__ = "1.0.0"
