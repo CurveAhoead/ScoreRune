@@ -21,3 +21,10 @@ from .engine import rank_candidates, score_candidate, score_criterion
 from .loader import LoadError, load_candidate_text, load_candidates, load_rubric
 
 __version__ = "1.0.0"
+
+__all__ = [
+    "Candidate",
+    "Criterion",
+    "CriterionResult",
+    "Ranking",
+    "Rubric",
