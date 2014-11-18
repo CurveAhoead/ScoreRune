@@ -8,3 +8,10 @@ Public API surface:
         load_rubric, load_candidates,
     )
 """
+
+from .model import (
+    Candidate,
+    Criterion,
+    CriterionResult,
+    Ranking,
+    Rubric,
