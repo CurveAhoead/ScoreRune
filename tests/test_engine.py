@@ -2,3 +2,8 @@
 
 import json
 import unittest
+from pathlib import Path
+
+from scorerune.engine import score_candidate
+from scorerune.loader import load_candidates, load_rubric
+
