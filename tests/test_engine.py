@@ -12,3 +12,9 @@ EX = Path(__file__).resolve().parent.parent / "examples"
 
 class EngineTests(unittest.TestCase):
     @classmethod
+    def setUpClass(cls):
+        cls.rubric = load_rubric(str(EX / "rubric.json"))
+        cls.candidates = load_candidates(str(EX / "candidates.json"))
+
+    def test_scores_in_range(self):
+        for cand in self.candidates:
