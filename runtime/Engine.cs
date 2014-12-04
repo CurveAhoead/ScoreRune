@@ -20,3 +20,15 @@ public static class Engine
     {
         var list = new List<string>();
         foreach (Match m in WordRe.Matches(text)) list.Add(m.Value);
+        return list;
+    }
+
+    // Values in Criterion.Params arrive as System.Text.Json JsonElement instances.
+    // These accessors read them without any third-party JSON library.
+    private static string GetStr(Dictionary<string, object> p, string key, string def = "")
+    {
+        if (!p.TryGetValue(key, out var v) || v is null) return def;
+        if (v is JsonElement je)
+            return je.ValueKind == JsonValueKind.String ? je.GetString() ?? def : je.ToString();
+        return v.ToString() ?? def;
+    }
