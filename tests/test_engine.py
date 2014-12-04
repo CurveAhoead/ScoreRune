@@ -23,3 +23,9 @@ class EngineTests(unittest.TestCase):
             self.assertLessEqual(card.total, 1.0)
 
     def test_deterministic(self):
+        first = [score_candidate(self.rubric, c).total for c in self.candidates]
+        second = [score_candidate(self.rubric, c).total for c in self.candidates]
+        self.assertEqual(first, second)
+
+    def test_criterion_ids_present(self):
+        card = score_candidate(self.rubric, self.candidates[0])
