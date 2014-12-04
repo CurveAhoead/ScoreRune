@@ -18,3 +18,8 @@ class EngineTests(unittest.TestCase):
 
     def test_scores_in_range(self):
         for cand in self.candidates:
+            card = score_candidate(self.rubric, cand)
+            self.assertGreaterEqual(card.total, 0.0)
+            self.assertLessEqual(card.total, 1.0)
+
+    def test_deterministic(self):
