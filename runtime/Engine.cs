@@ -32,3 +32,15 @@ public static class Engine
             return je.ValueKind == JsonValueKind.String ? je.GetString() ?? def : je.ToString();
         return v.ToString() ?? def;
     }
+
+    private static double GetNum(Dictionary<string, object> p, string key, double def)
+    {
+        if (!p.TryGetValue(key, out var v) || v is null) return def;
+        if (v is JsonElement je && je.ValueKind == JsonValueKind.Number)
+            return je.GetDouble();
+        return double.TryParse(v.ToString(), System.Globalization.NumberStyles.Any,
+            System.Globalization.CultureInfo.InvariantCulture, out var d) ? d : def;
+    }
+
+    private static bool GetBool(Dictionary<string, object> p, string key, bool def = false)
+    {
