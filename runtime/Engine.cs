@@ -44,3 +44,15 @@ public static class Engine
 
     private static bool GetBool(Dictionary<string, object> p, string key, bool def = false)
     {
+        if (!p.TryGetValue(key, out var v) || v is null) return def;
+        if (v is JsonElement je)
+            return je.ValueKind switch
+            {
+                JsonValueKind.True => true,
+                JsonValueKind.False => false,
+                _ => bool.TryParse(je.ToString(), out var b) ? b : def,
+            };
+        return bool.TryParse(v.ToString(), out var pb) ? pb : def;
+    }
+
+    private static bool HasKey(Dictionary<string, object> p, string key)
