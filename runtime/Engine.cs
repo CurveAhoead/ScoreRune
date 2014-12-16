@@ -56,3 +56,15 @@ public static class Engine
     }
 
     private static bool HasKey(Dictionary<string, object> p, string key)
+        => p.ContainsKey(key) &&
+           !(p[key] is JsonElement je && je.ValueKind is JsonValueKind.Null or JsonValueKind.Undefined);
+
+    private static List<string> GetList(Dictionary<string, object> p, string key)
+    {
+        var result = new List<string>();
+        if (!p.TryGetValue(key, out var v) || v is null) return result;
+        if (v is JsonElement je && je.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var item in je.EnumerateArray())
+                result.Add(item.ValueKind == JsonValueKind.String ? item.GetString() ?? "" : item.ToString());
+        }
