@@ -68,3 +68,15 @@ public static class Engine
             foreach (var item in je.EnumerateArray())
                 result.Add(item.ValueKind == JsonValueKind.String ? item.GetString() ?? "" : item.ToString());
         }
+        else if (v is IEnumerable<object> items)
+        {
+            foreach (var it in items) result.Add(it?.ToString() ?? "");
+        }
+        return result;
+    }
+
+    private static (double, List<string>) ScorePhrase(string text, Dictionary<string, object> p)
+    {
+        var phrases = GetList(p, "phrases");
+        if (phrases.Count == 0) return (0.0, new() { "no phrases configured" });
+        bool cs = GetBool(p, "case_sensitive");
