@@ -80,3 +80,15 @@ public static class Engine
         var phrases = GetList(p, "phrases");
         if (phrases.Count == 0) return (0.0, new() { "no phrases configured" });
         bool cs = GetBool(p, "case_sensitive");
+        string hay = cs ? text : text.ToLowerInvariant();
+        var found = new List<string>();
+        var missing = new List<string>();
+        foreach (var ph in phrases)
+        {
+            string needle = cs ? ph : ph.ToLowerInvariant();
+            if (hay.Contains(needle)) found.Add(ph); else missing.Add(ph);
+        }
+        string mode = GetStr(p, "mode", "all").ToLowerInvariant();
+        double score = mode == "any" ? (found.Count > 0 ? 1.0 : 0.0)
+                                     : (double)found.Count / phrases.Count;
+        var ev = new List<string> { $"found: {(found.Count > 0 ? string.Join(", ", found) : "none")}" };
