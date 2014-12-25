@@ -92,3 +92,15 @@ public static class Engine
         double score = mode == "any" ? (found.Count > 0 ? 1.0 : 0.0)
                                      : (double)found.Count / phrases.Count;
         var ev = new List<string> { $"found: {(found.Count > 0 ? string.Join(", ", found) : "none")}" };
+        if (missing.Count > 0) ev.Add($"missing: {string.Join(", ", missing)}");
+        return (Clamp01(score), ev);
+    }
+
+    private static (double, List<string>) ScoreLength(string text, Dictionary<string, object> p)
+    {
+        int n = Words(text).Count;
+        int lo = (int)GetNum(p, "min_words", 0);
+        int hi = (int)GetNum(p, "max_words", 10_000_000);
+        double score;
+        if (HasKey(p, "ideal_words"))
+        {
