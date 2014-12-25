@@ -104,3 +104,15 @@ public static class Engine
         double score;
         if (HasKey(p, "ideal_words"))
         {
+            int ideal = (int)GetNum(p, "ideal_words", 0);
+            if (n == ideal) score = 1.0;
+            else if (n < ideal) score = Clamp01((double)(n - lo) / Math.Max(ideal - lo, 1));
+            else score = Clamp01((double)(hi - n) / Math.Max(hi - ideal, 1));
+        }
+        else
+        {
+            if (n >= lo && n <= hi) score = 1.0;
+            else if (n < lo) score = lo > 0 ? Clamp01((double)n / lo) : 0.0;
+            else score = Clamp01(1.0 - (double)(n - hi) / Math.Max(hi, 1));
+        }
+        return (score, new() { $"word count = {n} (bounds {lo}..{hi})" });
