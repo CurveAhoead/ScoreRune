@@ -128,3 +128,15 @@ public static class Engine
         double target = GetNum(p, "target", 2.0);
         double tol = GetNum(p, "tolerance", 1.0);
         if (tol == 0) tol = 1.0;
+        double diff = Math.Abs(density - target);
+        double score = Clamp01(1.0 - Math.Max(diff - tol, 0.0) / Math.Max(target, 1.0));
+        return (score, new() { $"density = {density:F2}/100 words (target {target:F2} +/- {tol:F2}, hits {hits})" });
+    }
+
+    private static (double, List<string>) ScoreStructure(string text, Dictionary<string, object> p)
+    {
+        var checks = new List<bool>();
+        var ev = new List<string>();
+        if (GetBool(p, "require_headings"))
+        {
+            bool ok = HeadingRe.IsMatch(text);
