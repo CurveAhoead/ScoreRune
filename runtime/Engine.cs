@@ -116,3 +116,15 @@ public static class Engine
             else score = Clamp01(1.0 - (double)(n - hi) / Math.Max(hi, 1));
         }
         return (score, new() { $"word count = {n} (bounds {lo}..{hi})" });
+    }
+
+    private static (double, List<string>) ScoreKeywordDensity(string text, Dictionary<string, object> p)
+    {
+        var keywords = GetList(p, "keywords").ConvertAll(k => k.ToLowerInvariant());
+        var words = Words(text).ConvertAll(w => w.ToLowerInvariant());
+        int total = words.Count == 0 ? 1 : words.Count;
+        int hits = words.FindAll(keywords.Contains).Count;
+        double density = (double)hits / total * 100.0;
+        double target = GetNum(p, "target", 2.0);
+        double tol = GetNum(p, "tolerance", 1.0);
+        if (tol == 0) tol = 1.0;
