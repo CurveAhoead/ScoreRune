@@ -140,3 +140,15 @@ public static class Engine
         if (GetBool(p, "require_headings"))
         {
             bool ok = HeadingRe.IsMatch(text);
+            checks.Add(ok); ev.Add($"headings: {(ok ? "yes" : "no")}");
+        }
+        if (GetBool(p, "require_lists"))
+        {
+            bool ok = ListRe.IsMatch(text);
+            checks.Add(ok); ev.Add($"lists: {(ok ? "yes" : "no")}");
+        }
+        int minParas = (int)GetNum(p, "min_paragraphs", 0);
+        if (minParas > 0)
+        {
+            var paras = Regex.Split(text.Trim(), @"\n\s*\n");
+            int count = 0;
