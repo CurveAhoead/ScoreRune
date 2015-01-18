@@ -152,3 +152,16 @@ public static class Engine
         {
             var paras = Regex.Split(text.Trim(), @"\n\s*\n");
             int count = 0;
+            foreach (var b in paras) if (b.Trim().Length > 0) count++;
+            bool ok = count >= minParas;
+            checks.Add(ok); ev.Add($"paragraphs: {count} (need {minParas})");
+        }
+        if (checks.Count == 0) return (0.0, new() { "no structural requirements configured" });
+        int satisfied = checks.FindAll(c => c).Count;
+        return ((double)satisfied / checks.Count, ev);
+    }
+
+    public static CriterionResult ScoreCriterion(Criterion c, string text, double normalizedWeight)
+    {
+        (double raw, List<string> ev) = c.Kind switch
+        {
