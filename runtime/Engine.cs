@@ -165,3 +165,15 @@ public static class Engine
     {
         (double raw, List<string> ev) = c.Kind switch
         {
+            "phrase" => ScorePhrase(text, c.Params),
+            "length" => ScoreLength(text, c.Params),
+            "keyword_density" => ScoreKeywordDensity(text, c.Params),
+            "structure" => ScoreStructure(text, c.Params),
+            _ => (0.0, new List<string> { $"unknown kind '{c.Kind}'" }),
+        };
+        raw = Clamp01(raw);
+        return new CriterionResult
+        {
+            CriterionId = c.Id,
+            Title = c.Title,
+            RawScore = Math.Round(raw, 6),
