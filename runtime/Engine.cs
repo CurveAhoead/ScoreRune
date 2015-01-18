@@ -177,3 +177,15 @@ public static class Engine
             CriterionId = c.Id,
             Title = c.Title,
             RawScore = Math.Round(raw, 6),
+            Weight = c.Weight,
+            NormalizedWeight = Math.Round(normalizedWeight, 6),
+            WeightedScore = Math.Round(raw * normalizedWeight, 6),
+            Evidence = ev,
+        };
+    }
+
+    public static Scorecard ScoreCandidate(Rubric rubric, Candidate candidate)
+    {
+        double totalWeight = rubric.TotalWeight();
+        if (totalWeight == 0) totalWeight = 1.0;
+        var results = new List<CriterionResult>();
