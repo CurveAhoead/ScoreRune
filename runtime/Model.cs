@@ -18,3 +18,10 @@ public sealed record Criterion
 }
 
 public sealed record Rubric
+{
+    [JsonPropertyName("id")] public string Id { get; init; } = "";
+    [JsonPropertyName("title")] public string Title { get; init; } = "";
+    [JsonPropertyName("description")] public string Description { get; init; } = "";
+    [JsonPropertyName("criteria")] public List<Criterion> Criteria { get; init; } = new();
+
+    public double TotalWeight()
