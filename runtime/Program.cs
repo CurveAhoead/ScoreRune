@@ -28,3 +28,15 @@ public static class Program
             Console.Error.WriteLine("usage: scorerune <score|rank|validate|version> [options]");
             return 2;
         }
+
+        try
+        {
+            return args[0] switch
+            {
+                "score" => CmdScore(args),
+                "rank" => CmdRank(args),
+                "validate" => CmdValidate(args),
+                "version" or "--version" => PrintVersion(),
+                _ => Unknown(args[0]),
+            };
+        }
