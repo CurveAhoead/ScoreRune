@@ -39,3 +39,10 @@ public sealed record Candidate
     [JsonPropertyName("label")] public string Label { get; init; } = "";
 }
 
+public sealed record CriterionResult
+{
+    [JsonPropertyName("criterion_id")] public string CriterionId { get; init; } = "";
+    [JsonPropertyName("title")] public string Title { get; init; } = "";
+    [JsonPropertyName("raw_score")] public double RawScore { get; init; }
+    [JsonPropertyName("weight")] public double Weight { get; init; }
+    [JsonPropertyName("normalized_weight")] public double NormalizedWeight { get; init; }
