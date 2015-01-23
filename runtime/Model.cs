@@ -32,3 +32,10 @@ public sealed record Rubric
     }
 }
 
+public sealed record Candidate
+{
+    [JsonPropertyName("id")] public string Id { get; init; } = "";
+    [JsonPropertyName("text")] public string Text { get; init; } = "";
+    [JsonPropertyName("label")] public string Label { get; init; } = "";
+}
+
