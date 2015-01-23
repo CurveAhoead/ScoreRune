@@ -25,3 +25,10 @@ public sealed record Rubric
     [JsonPropertyName("criteria")] public List<Criterion> Criteria { get; init; } = new();
 
     public double TotalWeight()
+    {
+        double sum = 0;
+        foreach (var c in Criteria) sum += c.Weight;
+        return sum;
+    }
+}
+
