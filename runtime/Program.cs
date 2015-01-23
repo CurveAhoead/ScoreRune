@@ -40,3 +40,16 @@ public static class Program
                 _ => Unknown(args[0]),
             };
         }
+        catch (FileNotFoundException ex)
+        {
+            Console.Error.WriteLine($"error: {ex.Message}");
+            return 2;
+        }
+        catch (JsonException ex)
+        {
+            Console.Error.WriteLine($"error: invalid JSON: {ex.Message}");
+            return 2;
+        }
+    }
+
+    private static int PrintVersion()
