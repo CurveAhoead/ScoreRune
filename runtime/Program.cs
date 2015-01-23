@@ -16,3 +16,15 @@ public static class Program
         ReadCommentHandling = JsonCommentHandling.Skip,
     };
 
+    private static readonly JsonSerializerOptions WriteOpts = new()
+    {
+        WriteIndented = true,
+    };
+
+    public static int Main(string[] args)
+    {
+        if (args.Length == 0)
+        {
+            Console.Error.WriteLine("usage: scorerune <score|rank|validate|version> [options]");
+            return 2;
+        }
