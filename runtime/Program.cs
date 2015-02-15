@@ -77,3 +77,16 @@ public static class Program
         var rubric = JsonSerializer.Deserialize<Rubric>(File.ReadAllText(path), ReadOpts)
                      ?? throw new JsonException("rubric document is empty");
         if (rubric.Criteria.Count == 0)
+            throw new JsonException($"rubric '{rubric.Id}' has no criteria");
+        return rubric;
+    }
+
+    private static Candidate LoadCandidateText(string path, string id)
+    {
+        if (!File.Exists(path)) throw new FileNotFoundException($"file not found: {path}");
+        string text = File.ReadAllText(path);
+        string cid = string.IsNullOrEmpty(id) ? Path.GetFileNameWithoutExtension(path) : id;
+        return new Candidate { Id = cid, Text = text, Label = cid };
+    }
+
+    private static List<Candidate> LoadCandidates(string path)
