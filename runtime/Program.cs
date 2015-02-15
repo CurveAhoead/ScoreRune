@@ -65,3 +65,15 @@ public static class Program
     }
 
     private static string Opt(string[] args, string name, string def = "")
+    {
+        for (int i = 1; i < args.Length - 1; i++)
+            if (args[i] == name) return args[i + 1];
+        return def;
+    }
+
+    private static Rubric LoadRubric(string path)
+    {
+        if (!File.Exists(path)) throw new FileNotFoundException($"file not found: {path}");
+        var rubric = JsonSerializer.Deserialize<Rubric>(File.ReadAllText(path), ReadOpts)
+                     ?? throw new JsonException("rubric document is empty");
+        if (rubric.Criteria.Count == 0)
