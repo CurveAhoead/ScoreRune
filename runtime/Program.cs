@@ -90,3 +90,15 @@ public static class Program
     }
 
     private static List<Candidate> LoadCandidates(string path)
+    {
+        if (!File.Exists(path)) throw new FileNotFoundException($"file not found: {path}");
+        using var doc = JsonDocument.Parse(File.ReadAllText(path));
+        var root = doc.RootElement;
+        JsonElement array = root.ValueKind == JsonValueKind.Object &&
+                            root.TryGetProperty("candidates", out var arr) ? arr : root;
+        var result = new List<Candidate>();
+        foreach (var el in array.EnumerateArray())
+        {
+            var c = el.Deserialize<Candidate>(ReadOpts);
+            if (c is not null) result.Add(c);
+        }
