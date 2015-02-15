@@ -53,3 +53,15 @@ public static class Program
     }
 
     private static int PrintVersion()
+    {
+        Console.WriteLine("scorerune-runtime 1.0.0");
+        return 0;
+    }
+
+    private static int Unknown(string cmd)
+    {
+        Console.Error.WriteLine($"error: unknown command '{cmd}'");
+        return 2;
+    }
+
+    private static string Opt(string[] args, string name, string def = "")
