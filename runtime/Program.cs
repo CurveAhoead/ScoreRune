@@ -102,3 +102,16 @@ public static class Program
             var c = el.Deserialize<Candidate>(ReadOpts);
             if (c is not null) result.Add(c);
         }
+        if (result.Count == 0) throw new JsonException("no candidates found");
+        return result;
+    }
+
+    private static string Bar(double fraction, int width = 20)
+    {
+        fraction = fraction < 0 ? 0 : fraction > 1 ? 1 : fraction;
+        int filled = (int)Math.Round(fraction * width);
+        return new string('#', filled) + new string('.', width - filled);
+    }
+
+    private static string ScorecardMarkdown(Scorecard card)
+    {
