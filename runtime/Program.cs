@@ -115,3 +115,15 @@ public static class Program
 
     private static string ScorecardMarkdown(Scorecard card)
     {
+        var sb = new StringBuilder();
+        sb.AppendLine($"# Scorecard: {card.Label}").AppendLine();
+        sb.AppendLine($"- Rubric: `{card.RubricId}`");
+        sb.AppendLine($"- Candidate: `{card.CandidateId}`");
+        sb.AppendLine($"- **Total: {card.Percent:F2}%**").AppendLine();
+        sb.AppendLine("| Criterion | Raw | Weight | Weighted | Bar |");
+        sb.AppendLine("|-----------|-----|--------|----------|-----|");
+        foreach (var r in card.Results)
+            sb.AppendLine($"| {r.Title} | {r.RawScore:F2} | {r.NormalizedWeight:F2} | {r.WeightedScore:F3} | `{Bar(r.RawScore)}` |");
+        sb.AppendLine().AppendLine("## Evidence").AppendLine();
+        foreach (var r in card.Results)
+        {
