@@ -127,3 +127,15 @@ public static class Program
         sb.AppendLine().AppendLine("## Evidence").AppendLine();
         foreach (var r in card.Results)
         {
+            sb.AppendLine($"### {r.Title}");
+            foreach (var e in r.Evidence) sb.AppendLine($"- {e}");
+            sb.AppendLine();
+        }
+        return sb.ToString().TrimEnd() + "\n";
+    }
+
+    private static int CmdScore(string[] args)
+    {
+        var rubric = LoadRubric(Opt(args, "-r", Opt(args, "--rubric")));
+        var candidate = LoadCandidateText(Opt(args, "-c", Opt(args, "--candidate")), Opt(args, "--id"));
+        var card = Engine.ScoreCandidate(rubric, candidate);
