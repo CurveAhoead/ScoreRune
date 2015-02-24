@@ -139,3 +139,16 @@ public static class Program
         var rubric = LoadRubric(Opt(args, "-r", Opt(args, "--rubric")));
         var candidate = LoadCandidateText(Opt(args, "-c", Opt(args, "--candidate")), Opt(args, "--id"));
         var card = Engine.ScoreCandidate(rubric, candidate);
+        string fmt = Opt(args, "-f", Opt(args, "--format", "md"));
+        Console.Write(fmt == "json" ? JsonSerializer.Serialize(card, WriteOpts) + "\n"
+                                    : ScorecardMarkdown(card));
+        return 0;
+    }
+
+    private static int CmdRank(string[] args)
+    {
+        var rubric = LoadRubric(Opt(args, "-r", Opt(args, "--rubric")));
+        var candidates = LoadCandidates(Opt(args, "-c", Opt(args, "--candidates")));
+        var cards = Engine.RankCandidates(rubric, candidates);
+        string fmt = Opt(args, "-f", Opt(args, "--format", "md"));
+        if (fmt == "json")
