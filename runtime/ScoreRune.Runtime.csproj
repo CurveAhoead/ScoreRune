@@ -5,3 +5,5 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>scorerune</AssemblyName>
+    <RootNamespace>ScoreRune.Runtime</RootNamespace>
