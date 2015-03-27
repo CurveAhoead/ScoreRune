@@ -2,3 +2,11 @@
   "id": "support-reply-v1",
   "title": "Customer Support Reply Quality",
   "description": "Reviews AI-drafted support replies for coverage, tone, structure, and appropriate length.",
+  "criteria": [
+    {
+      "id": "acknowledges-issue",
+      "title": "Acknowledges the customer's issue",
+      "weight": 3.0,
+      "kind": "phrase",
+      "params": {
+        "phrases": ["sorry", "understand", "apologize"],
