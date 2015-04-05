@@ -19,3 +19,12 @@
       "title": "Provides concrete next steps",
       "weight": 4.0,
       "kind": "phrase",
+      "params": {
+        "phrases": ["step", "next", "follow", "resolve"],
+        "mode": "any"
+      }
+    },
+    {
+      "id": "length-window",
+      "title": "Reasonable reply length",
+      "weight": 2.0,
