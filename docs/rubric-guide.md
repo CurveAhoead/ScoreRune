@@ -30,3 +30,16 @@ Checks for literal substrings.
 
 Score for `all` mode is `found / total`. For `any` mode it is `1.0` when at least
 one phrase is present, else `0.0`.
+
+### length
+
+Scores word count against a window.
+
+| param | type | default | meaning |
+|-------|------|---------|---------|
+| `min_words` | int | `0` | lower bound of the acceptable window |
+| `max_words` | int | very large | upper bound |
+| `ideal_words` | int | (unset) | if given, the peak of a triangular curve |
+
+Without `ideal_words`, any count inside `[min, max]` scores `1.0`, and counts
+outside fall off linearly. With `ideal_words`, the score peaks at the ideal and
