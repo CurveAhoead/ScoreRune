@@ -5,3 +5,9 @@ labels: bug
 ---
 
 **What happened**
+
+<!-- expected vs actual -->
+
+**Minimal reproducer**
+
+```
