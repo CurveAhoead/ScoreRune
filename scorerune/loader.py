@@ -62,3 +62,17 @@ def load_candidates(path: str | Path) -> list[Candidate]:
         seen.add(cand.id)
         candidates.append(cand)
     if errors:
+        raise LoadError("candidate validation failed:\n  - " + "\n  - ".join(errors))
+    if not candidates:
+        raise LoadError("no candidates found")
+    return candidates
+
+
+def load_candidate_text(path: str | Path, candidate_id: str = "") -> Candidate:
+    """Load a single candidate from a raw text file (not JSON)."""
+    p = Path(path)
+    if not p.exists():
+        raise LoadError(f"file not found: {p}")
+    text = p.read_text(encoding="utf-8")
+    cid = candidate_id or p.stem
+# review note: loader must fail fast on bad schema
