@@ -9,3 +9,11 @@ RUNTIME := runtime/ScoreRune.Runtime.csproj
 all: build
 
 ## Byte-compile the Python package.
+py-compile:
+	$(PY) -m compileall scorerune
+
+## Restore-free Release build of the C# runtime.
+dotnet-build:
+	$(DOTNET) build -c Release $(RUNTIME)
+
+## Compile both runtimes.
