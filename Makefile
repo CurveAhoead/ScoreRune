@@ -17,3 +17,11 @@ dotnet-build:
 	$(DOTNET) build -c Release $(RUNTIME)
 
 ## Compile both runtimes.
+build: py-compile dotnet-build
+
+## Rank the example batch with the Python CLI.
+demo:
+	$(PY) -m scorerune rank -r examples/rubric.json -c examples/candidates.json -f md
+
+## Rank the example batch with the C# runtime.
+demo-cs: dotnet-build
