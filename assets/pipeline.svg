@@ -12,3 +12,11 @@
       <stop offset="1" stop-color="#3a2a5e"/>
     </linearGradient>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3"
+            orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#f6d365"/></marker>
+  </defs>
+
+  <rect width="720" height="240" fill="url(#pbg)"/>
+  <text x="24" y="34" font-family="Georgia, serif" font-size="18" fill="#f6d365"
+        letter-spacing="2">SCORING PIPELINE</text>
+
+  <!-- Stages -->
