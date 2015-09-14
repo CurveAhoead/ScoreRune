@@ -20,3 +20,11 @@
         letter-spacing="2">SCORING PIPELINE</text>
 
   <!-- Stages -->
+  <g font-family="Georgia, serif" font-size="13" fill="#efe6ff" text-anchor="middle">
+    <g transform="translate(60,110)">
+      <rect x="-52" y="-30" width="104" height="60" rx="10" fill="url(#node)" stroke="#b388ff"/>
+      <text y="-4">Rubric +</text><text y="14">Candidate</text>
+    </g>
+    <g transform="translate(240,110)">
+      <rect x="-52" y="-30" width="104" height="60" rx="10" fill="url(#node)" stroke="#b388ff"/>
+      <text y="-4">Per-criterion</text><text y="14">scorers</text>
