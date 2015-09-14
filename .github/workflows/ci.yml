@@ -15,3 +15,10 @@ jobs:
         with:
           python-version: "3.11"
       - name: Byte-compile package
+        run: python -m compileall scorerune
+      - name: Smoke-run CLI
+        run: |
+          python -m scorerune validate -r examples/rubric.json -c examples/candidates.json
+          python -m scorerune rank -r examples/rubric.json -c examples/candidates.json -f json
+
+  dotnet:
