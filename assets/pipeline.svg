@@ -28,3 +28,11 @@
     <g transform="translate(240,110)">
       <rect x="-52" y="-30" width="104" height="60" rx="10" fill="url(#node)" stroke="#b388ff"/>
       <text y="-4">Per-criterion</text><text y="14">scorers</text>
+    </g>
+    <g transform="translate(420,110)">
+      <rect x="-52" y="-30" width="104" height="60" rx="10" fill="url(#node)" stroke="#b388ff"/>
+      <text y="-4">Weighted</text><text y="14">combine</text>
+    </g>
+    <g transform="translate(620,110)">
+      <rect x="-58" y="-30" width="116" height="60" rx="10" fill="url(#node)" stroke="#f6d365"/>
+      <text y="-4">Scorecard /</text><text y="14">Ranking</text>
