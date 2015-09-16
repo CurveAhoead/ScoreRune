@@ -36,3 +36,12 @@
     <g transform="translate(620,110)">
       <rect x="-58" y="-30" width="116" height="60" rx="10" fill="url(#node)" stroke="#f6d365"/>
       <text y="-4">Scorecard /</text><text y="14">Ranking</text>
+    </g>
+  </g>
+
+  <!-- Connectors -->
+  <g stroke="#f6d365" stroke-width="2" fill="none">
+    <line x1="112" y1="110" x2="180" y2="110" marker-end="url(#arrow)"/>
+    <line x1="292" y1="110" x2="360" y2="110" marker-end="url(#arrow)"/>
+    <line x1="472" y1="110" x2="554" y2="110" marker-end="url(#arrow)"/>
+  </g>
