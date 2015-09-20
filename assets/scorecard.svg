@@ -15,3 +15,12 @@
       <stop offset="0" stop-color="#7c4dff"/>
       <stop offset="1" stop-color="#b388ff"/>
     </linearGradient>
+  </defs>
+
+  <rect width="640" height="320" fill="url(#bg)"/>
+  <rect x="0" y="0" width="640" height="6" fill="url(#gold)"/>
+
+  <text x="40" y="70" font-family="Georgia, 'Times New Roman', serif" font-size="42"
+        fill="#f6d365" font-weight="bold">ScoreRune</text>
+  <text x="42" y="98" font-family="Georgia, serif" font-size="16" fill="#b388ff"
+        letter-spacing="3">DETERMINISTIC RUBRIC ENGINE</text>
