@@ -5,3 +5,13 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#2a1a4a"/>
+      <stop offset="1" stop-color="#160c2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f6d365"/>
+      <stop offset="1" stop-color="#d9a441"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7c4dff"/>
+      <stop offset="1" stop-color="#b388ff"/>
+    </linearGradient>
