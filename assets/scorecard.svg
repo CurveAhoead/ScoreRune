@@ -34,3 +34,13 @@
                begin="0s" fill="freeze" calcMode="spline"
                keySplines="0.2 0.7 0.3 1" keyTimes="0;1" values="0;360"/>
     </rect>
+
+    <text x="40" y="192">provides-next-steps</text>
+    <rect x="230" y="180" width="360" height="16" rx="8" fill="#3a2a5e"/>
+    <rect x="230" y="180" width="0" height="16" rx="8" fill="url(#violet)">
+      <animate attributeName="width" from="0" to="360" dur="1.6s"
+               begin="0.2s" fill="freeze" calcMode="spline"
+               keySplines="0.2 0.7 0.3 1" keyTimes="0;1" values="0;360"/>
+    </rect>
+
+    <text x="40" y="234">length-window</text>
