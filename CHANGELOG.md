@@ -5,3 +5,4 @@ All notable changes to ScoreRune are documented here. The format follows
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
