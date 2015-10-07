@@ -9,3 +9,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - planning: per-criterion calibration curves for noisy graders
 
 ## [1.0.0] - 2026-01-20
+
