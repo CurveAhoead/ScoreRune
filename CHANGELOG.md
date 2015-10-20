@@ -11,3 +11,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.0.0] - 2026-01-20
 
 ### Added
+- stable scorecard schema (frozen field names, additive-only)
