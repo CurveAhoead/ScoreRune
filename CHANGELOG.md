@@ -16,3 +16,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `validate` subcommand for rubric and candidate sanity checks
 - performance pass on dispatch-based scorers
 
+### Verified
