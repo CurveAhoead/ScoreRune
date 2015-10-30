@@ -17,3 +17,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - performance pass on dispatch-based scorers
 
 ### Verified
+- `python -m compileall scorerune` succeeds.
