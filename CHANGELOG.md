@@ -18,3 +18,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Verified
 - `python -m compileall scorerune` succeeds.
+- `dotnet build -c Release` succeeds with 0 warnings and 0 errors.
