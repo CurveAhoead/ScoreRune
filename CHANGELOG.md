@@ -29,3 +29,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - weight normalization per rubric (total weight no longer required to be 1.0)
 
 ## [0.5.0] - 2022-07-19
+
