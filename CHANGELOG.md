@@ -25,3 +25,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - `rank` command with stable tie-break on candidate id
+- ASCII score bars and per-criterion evidence sections in the markdown report
