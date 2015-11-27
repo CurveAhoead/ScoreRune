@@ -30,3 +30,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5.0] - 2022-07-19
 
+### Added
