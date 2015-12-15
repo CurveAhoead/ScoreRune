@@ -34,3 +34,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `structure` evidence kind (section/heading shape checks)
 - keyword_density evidence with configurable thresholds
 - JSON report format alongside markdown
+
