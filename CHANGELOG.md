@@ -35,3 +35,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - keyword_density evidence with configurable thresholds
 - JSON report format alongside markdown
 
+## [0.4.0] - 2020-02-25
