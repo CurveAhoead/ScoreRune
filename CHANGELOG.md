@@ -41,3 +41,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - length evidence with min/max windows
 - deterministic ordering of evidence in all reports
 
+## [0.3.0] - 2018-03-08
