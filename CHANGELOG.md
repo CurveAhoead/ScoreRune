@@ -44,3 +44,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [0.3.0] - 2018-03-08
 
 ### Added
+- weighted criteria with per-criterion scores in `[0, 1]`
