@@ -46,3 +46,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - weighted criteria with per-criterion scores in `[0, 1]`
 - phrase evidence kind (exact and case-insensitive matching)
+
