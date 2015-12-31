@@ -48,3 +48,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - phrase evidence kind (exact and case-insensitive matching)
 
 ## [0.2.0] - 2016-06-14
+
