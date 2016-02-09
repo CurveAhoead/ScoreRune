@@ -9,3 +9,10 @@ as `dotnet run --project runtime/ScoreRune.Runtime.csproj --`.
 Score one candidate text file against a rubric.
 
 ```
+scorerune score -r RUBRIC.json -c CANDIDATE.txt [--id ID] [-f md|json]
+```
+
+- `-r, --rubric` — path to the rubric JSON (required).
+- `-c, --candidate` — path to a plain-text candidate (required).
+- `--id` — override the candidate id (defaults to the file stem).
+- `-f, --format` — `md` (default) or `json`.
