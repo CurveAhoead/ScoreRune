@@ -39,3 +39,13 @@ Scores word count against a window.
 |-------|------|---------|---------|
 | `min_words` | int | `0` | lower bound of the acceptable window |
 | `max_words` | int | very large | upper bound |
+| `ideal_words` | int | (unset) | if given, the peak of a triangular curve |
+
+Without `ideal_words`, any count inside `[min, max]` scores `1.0`, and counts
+outside fall off linearly. With `ideal_words`, the score peaks at the ideal and
+tapers toward the bounds.
+
+### keyword_density
+
+Measures how often keywords occur per 100 words.
+
