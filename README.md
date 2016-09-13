@@ -297,3 +297,54 @@ edge. Nudging the draft toward 90 words would lift the total without touching an
 other criterion — exactly the kind of targeted feedback the evidence section is
 meant to enable.
 
+---
+
+## Determinism and cross-runtime parity
+
+ScoreRune's central guarantee is that identical inputs yield identical outputs,
+across both runtimes. This is enforced by construction:
+
+- Scorers are pure functions of `(text, params)` with no clocks, randomness, or
+  I/O.
+- Weight normalization and clamping are the same arithmetic in both languages.
+- Ranking uses the same comparison and the same tie-break (`candidate_id`,
+  ordinal).
+- JSON output uses sorted keys and fixed indentation.
+
+The example batch scores `90.00%`, `89.60%`, `0.00%` in that order under both the
+Python engine and the .NET runtime. Run the two `demo` targets in the `Makefile`
+and compare — the ranking tables are identical.
+
+---
+
+## Repository layout
+
+```
+scorerune/
+├── scorerune/                 Python package
+│   ├── __init__.py            public API surface
+│   ├── __main__.py            `python -m scorerune`
+│   ├── model.py               value objects + validation
+│   ├── loader.py              JSON/text loading
+│   ├── engine.py              pure scorers + ranking
+│   ├── report.py              Markdown/JSON renderers
+│   └── cli.py                 argparse CLI
+├── runtime/                   .NET 9 runtime
+│   ├── Model.cs
+│   ├── Engine.cs
+│   ├── Program.cs
+│   └── ScoreRune.Runtime.csproj
+├── examples/                  rubric + candidate fixtures
+├── docs/                      rubric guide + CLI reference
+├── assets/                    animated SVGs referenced above
+├── .github/workflows/ci.yml   compile + smoke-run both runtimes
+├── Makefile                   build/demo/validate helpers
+├── pyproject.toml
+├── CHANGELOG.md
+├── ROADMAP.md
+└── LICENSE                    Apache-2.0
+```
+
+---
+
+## Build and verify
