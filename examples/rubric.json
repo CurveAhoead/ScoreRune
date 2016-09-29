@@ -18,3 +18,9 @@
       "id": "provides-next-steps",
       "title": "Provides concrete next steps",
       "weight": 4.0,
+      "kind": "phrase",
+      "params": {
+        "phrases": ["step", "next", "follow", "resolve"],
+        "mode": "any"
+      }
+    },
