@@ -19,3 +19,10 @@ scorerune score -r RUBRIC.json -c CANDIDATE.txt [--id ID] [-f md|json]
 
 ## rank
 
+Score a batch of candidates and print them best-first.
+
+```
+scorerune rank -r RUBRIC.json -c CANDIDATES.json [-f md|json]
+```
+
+- `-c, --candidates` — a JSON array of candidate objects, or an object with a
