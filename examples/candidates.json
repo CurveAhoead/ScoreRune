@@ -9,3 +9,9 @@
       "id": "draft-b",
       "label": "Draft B (terse)",
       "text": "Refund issued. It will show up soon."
+    },
+    {
+      "id": "draft-c",
+      "label": "Draft C (wordy, no list)",
+      "text": "Hello there and thank you so much for reaching out to us today about this particular matter. We are sorry to hear about the difficulty you experienced and we truly understand that these things can be frustrating for anyone in your position. Rest assured that our team is looking into everything carefully and we will make sure to follow up with you about the next steps as soon as we possibly can, because your satisfaction genuinely matters to all of us here on the support team every single day."
+    }
