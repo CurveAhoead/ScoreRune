@@ -222,3 +222,53 @@ dotnet run -c Release --project runtime/ScoreRune.Runtime.csproj -- \
 # Ranking for rubric `support-reply-v1`
 
 | Rank | Candidate | Total |
+|------|-----------|-------|
+| 1 | Draft A (structured) | 90.00% |
+| 2 | Draft C (wordy, no list) | 89.60% |
+| 3 | Draft B (terse) | 0.00% |
+```
+
+---
+
+## Writing your own rubric
+
+A minimal rubric is a JSON object with a `criteria` array. Here is a rubric that
+rewards a technical answer for citing a source, staying concise, and using code
+formatting:
+
+```json
+{
+  "id": "tech-answer-v1",
+  "title": "Technical Answer Quality",
+  "criteria": [
+    {
+      "id": "cites-source",
+      "title": "Cites a source",
+      "weight": 3.0,
+      "kind": "phrase",
+      "params": { "phrases": ["http", "docs", "reference", "see"], "mode": "any" }
+    },
+    {
+      "id": "concise",
+      "title": "Concise",
+      "weight": 2.0,
+      "kind": "length",
+      "params": { "min_words": 20, "max_words": 120, "ideal_words": 60 }
+    },
+    {
+      "id": "uses-code",
+      "title": "Uses code formatting",
+      "weight": 2.0,
+      "kind": "structure",
+      "params": { "require_lists": true }
+    }
+  ]
+}
+```
+
+Validate it before use:
+
+```bash
+python -m scorerune validate -r tech-answer-v1.json
+# rubric 'tech-answer-v1' OK: 3 criteria, total weight 7
+```
