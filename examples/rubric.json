@@ -6,3 +6,9 @@
     {
       "id": "acknowledges-issue",
       "title": "Acknowledges the customer's issue",
+      "weight": 3.0,
+      "kind": "phrase",
+      "params": {
+        "phrases": ["sorry", "understand", "apologize"],
+        "mode": "any"
+      },
