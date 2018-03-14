@@ -16,3 +16,10 @@ scorerune score -r RUBRIC.json -c CANDIDATE.txt [--id ID] [-f md|json]
 - `-c, --candidate` — path to a plain-text candidate (required).
 - `--id` — override the candidate id (defaults to the file stem).
 - `-f, --format` — `md` (default) or `json`.
+
+## rank
+
+Score a batch of candidates and print them best-first.
+
+```
+scorerune rank -r RUBRIC.json -c CANDIDATES.json [-f md|json]
