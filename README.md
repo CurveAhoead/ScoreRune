@@ -197,3 +197,53 @@ python -m scorerune score -r examples/rubric.json -c examples/candidate-a.txt
 | Provides concrete next steps | 1.00 | 0.40 | 0.400 | `####################` |
 | Reasonable reply length | 0.50 | 0.20 | 0.100 | `##########..........` |
 | Readable structure | 1.00 | 0.10 | 0.100 | `####################` |
+```
+
+### JSON output for pipelines
+
+```bash
+python -m scorerune rank -r examples/rubric.json -c examples/candidates.json -f json > ranking.json
+```
+
+The JSON is emitted with sorted keys and a fixed indent so two runs diff cleanly.
+Each scorecard carries `total`, `percent`, and a `results` array with per-criterion
+`raw_score`, `normalized_weight`, `weighted_score`, and `evidence`.
+
+### The .NET runtime
+
+The C# app takes the same flags and produces the same numbers:
+
+```bash
+dotnet run -c Release --project runtime/ScoreRune.Runtime.csproj -- \
+  rank -r examples/rubric.json -c examples/candidates.json
+```
+
+```
+# Ranking for rubric `support-reply-v1`
+
+| Rank | Candidate | Total |
+|------|-----------|-------|
+| 1 | Draft A (structured) | 90.00% |
+| 2 | Draft C (wordy, no list) | 89.60% |
+| 3 | Draft B (terse) | 0.00% |
+```
+
+---
+
+## Writing your own rubric
+
+A minimal rubric is a JSON object with a `criteria` array. Here is a rubric that
+rewards a technical answer for citing a source, staying concise, and using code
+formatting:
+
+```json
+{
+  "id": "tech-answer-v1",
+  "title": "Technical Answer Quality",
+  "criteria": [
+    {
+      "id": "cites-source",
+      "title": "Cites a source",
+      "weight": 3.0,
+      "kind": "phrase",
+      "params": { "phrases": ["http", "docs", "reference", "see"], "mode": "any" }
