@@ -170,3 +170,32 @@ class Scorecard:
 
     def percent(self) -> float:
         return round(self.total * 100.0, 2)
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "candidate_id": self.candidate_id,
+            "label": self.label,
+            "rubric_id": self.rubric_id,
+            "total": round(self.total, 6),
+            "percent": self.percent(),
+            "results": [r.to_dict() for r in self.results],
+        }
+
+
+@dataclass(frozen=True)
+class Ranking:
+    """Ordered scorecards for a batch of candidates."""
+
+    rubric_id: str
+    scorecards: list[Scorecard]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "rubric_id": self.rubric_id,
+            "ranking": [
+                {"rank": i + 1, "candidate_id": s.candidate_id,
+                 "label": s.label, "percent": s.percent()}
+                for i, s in enumerate(self.scorecards)
+            ],
+            "scorecards": [s.to_dict() for s in self.scorecards],
+# review note: keep evidence additive
