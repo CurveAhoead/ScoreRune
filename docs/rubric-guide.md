@@ -29,3 +29,13 @@ Checks for literal substrings.
 | `case_sensitive` | bool | `false` | match casing exactly |
 
 Score for `all` mode is `found / total`. For `any` mode it is `1.0` when at least
+one phrase is present, else `0.0`.
+
+### length
+
+Scores word count against a window.
+
+| param | type | default | meaning |
+|-------|------|---------|---------|
+| `min_words` | int | `0` | lower bound of the acceptable window |
+| `max_words` | int | very large | upper bound |
