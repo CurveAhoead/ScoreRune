@@ -71,3 +71,53 @@ implemented twice, once per runtime.
                         │    scorer = dispatch[kind]                   │
                         │    raw    = scorer(text, params)   ∈ [0,1]   │
                         │    nw     = weight / Σ weights               │
+                        │    part   = raw · nw                         │
+                        │  total = Σ part                     ∈ [0,1]  │
+                        └───────────────────────┬─────────────────────┘
+                                                 │
+                                                 ▼
+                        ┌─────────────────────────────────────────────┐
+                        │                  report                      │
+                        │  Scorecard / Ranking  →  Markdown | JSON     │
+                        └─────────────────────────────────────────────┘
+```
+
+### Module map (Python)
+
+| module | responsibility |
+|--------|----------------|
+| `scorerune/model.py` | value objects: `Criterion`, `Rubric`, `Candidate`, `CriterionResult`, `Scorecard`, `Ranking`, plus `to_dict`/`from_dict` and validation |
+| `scorerune/loader.py` | JSON/text loading with eager validation and a single aggregated `LoadError` |
+| `scorerune/engine.py` | the four pure scorers, `score_criterion`, `score_candidate`, `rank_candidates` |
+| `scorerune/report.py` | Markdown and JSON renderers with ASCII score bars |
+| `scorerune/cli.py` | `argparse`-based `score` / `rank` / `validate` subcommands |
+
+### Module map (.NET)
+
+| file | responsibility |
+|------|----------------|
+| `runtime/Model.cs` | `record` types mirroring the Python model, annotated for `System.Text.Json` |
+| `runtime/Engine.cs` | the four scorers and ranking logic, reading `params` as `JsonElement` |
+| `runtime/Program.cs` | console entry point with the same subcommands and output formats |
+
+The engines are deliberately kept in lockstep. When a scorer changes in one
+runtime, the other must change identically — the parity check below is how that
+invariant is verified.
+
+---
+
+## The scoring model
+
+A **rubric** is a named list of **criteria**. Each criterion has a `weight` and a
+`kind`. The kind selects one of four pure scoring functions:
+
+| kind | signal it measures |
+|------|--------------------|
+| `phrase` | presence of literal substrings, in `any` or `all` mode |
+| `length` | word count against a `[min, max]` window, optionally peaked at an ideal |
+| `keyword_density` | keyword occurrences per 100 words against a target ± tolerance |
+| `structure` | Markdown-ish features: headings, lists, paragraph count |
+
+Each scorer returns a raw value in `[0, 1]` and a list of evidence strings. The
+engine normalizes weights by their sum, so the weighted contribution of a
+criterion is `raw · (weight / Σ weights)`, and the total is the sum of those
