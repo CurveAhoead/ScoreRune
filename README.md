@@ -247,3 +247,53 @@ formatting:
       "weight": 3.0,
       "kind": "phrase",
       "params": { "phrases": ["http", "docs", "reference", "see"], "mode": "any" }
+    },
+    {
+      "id": "concise",
+      "title": "Concise",
+      "weight": 2.0,
+      "kind": "length",
+      "params": { "min_words": 20, "max_words": 120, "ideal_words": 60 }
+    },
+    {
+      "id": "uses-code",
+      "title": "Uses code formatting",
+      "weight": 2.0,
+      "kind": "structure",
+      "params": { "require_lists": true }
+    }
+  ]
+}
+```
+
+Validate it before use:
+
+```bash
+python -m scorerune validate -r tech-answer-v1.json
+# rubric 'tech-answer-v1' OK: 3 criteria, total weight 7
+```
+
+The full field reference, including `keyword_density` and every default value, is
+in [`docs/rubric-guide.md`](docs/rubric-guide.md). The command reference is in
+[`docs/cli.md`](docs/cli.md).
+
+---
+
+## How scoring is combined (worked example)
+
+Take the support rubric with weights `3, 4, 2, 1` (sum = 10) and Draft A:
+
+| criterion | raw | normalized weight | contribution |
+|-----------|-----|-------------------|--------------|
+| acknowledges-issue | 1.00 | 0.30 | 0.300 |
+| provides-next-steps | 1.00 | 0.40 | 0.400 |
+| length-window | 0.50 | 0.20 | 0.100 |
+| readable-structure | 1.00 | 0.10 | 0.100 |
+| **total** | | | **0.900 → 90.00%** |
+
+The length criterion scores `0.50` because Draft A has 65 words while the ideal is
+90 with a lower bound of 40; the triangular curve places 65 halfway up the rising
+edge. Nudging the draft toward 90 words would lift the total without touching any
+other criterion — exactly the kind of targeted feedback the evidence section is
+meant to enable.
+
