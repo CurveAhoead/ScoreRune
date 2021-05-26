@@ -96,3 +96,53 @@ implemented twice, once per runtime.
 
 | file | responsibility |
 |------|----------------|
+| `runtime/Model.cs` | `record` types mirroring the Python model, annotated for `System.Text.Json` |
+| `runtime/Engine.cs` | the four scorers and ranking logic, reading `params` as `JsonElement` |
+| `runtime/Program.cs` | console entry point with the same subcommands and output formats |
+
+The engines are deliberately kept in lockstep. When a scorer changes in one
+runtime, the other must change identically — the parity check below is how that
+invariant is verified.
+
+---
+
+## The scoring model
+
+A **rubric** is a named list of **criteria**. Each criterion has a `weight` and a
+`kind`. The kind selects one of four pure scoring functions:
+
+| kind | signal it measures |
+|------|--------------------|
+| `phrase` | presence of literal substrings, in `any` or `all` mode |
+| `length` | word count against a `[min, max]` window, optionally peaked at an ideal |
+| `keyword_density` | keyword occurrences per 100 words against a target ± tolerance |
+| `structure` | Markdown-ish features: headings, lists, paragraph count |
+
+Each scorer returns a raw value in `[0, 1]` and a list of evidence strings. The
+engine normalizes weights by their sum, so the weighted contribution of a
+criterion is `raw · (weight / Σ weights)`, and the total is the sum of those
+contributions — itself always in `[0, 1]`.
+
+Ranking sorts scorecards by descending total, breaking ties on candidate id so
+the order is stable and reproducible regardless of input ordering.
+
+Full semantics for every `params` field live in
+[`docs/rubric-guide.md`](docs/rubric-guide.md).
+
+---
+
+## Installation
+
+ScoreRune needs no third-party packages. To run from source you only need the
+interpreters/SDKs you already have.
+
+```bash
+# Python 3.11+ — run straight from the checkout
+python -m scorerune --version
+
+# Optional: install so the `scorerune` command is on PATH
+python -m pip install .
+```
+
+```bash
+# .NET 9 — restore is framework-only, no NuGet packages are pulled
