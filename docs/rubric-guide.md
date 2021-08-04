@@ -10,3 +10,13 @@ same as one with `30, 40, 20, 10`.
 {
   "id": "my-rubric",
   "title": "My Rubric",
+  "criteria": [
+    { "id": "c1", "title": "...", "weight": 2.0, "kind": "phrase", "params": {} }
+  ]
+}
+```
+
+## Evidence kinds
+
+### phrase
+
