@@ -121,3 +121,54 @@ A **rubric** is a named list of **criteria**. Each criterion has a `weight` and 
 Each scorer returns a raw value in `[0, 1]` and a list of evidence strings. The
 engine normalizes weights by their sum, so the weighted contribution of a
 criterion is `raw · (weight / Σ weights)`, and the total is the sum of those
+contributions — itself always in `[0, 1]`.
+
+Ranking sorts scorecards by descending total, breaking ties on candidate id so
+the order is stable and reproducible regardless of input ordering.
+
+Full semantics for every `params` field live in
+[`docs/rubric-guide.md`](docs/rubric-guide.md).
+
+---
+
+## Installation
+
+ScoreRune needs no third-party packages. To run from source you only need the
+interpreters/SDKs you already have.
+
+```bash
+# Python 3.11+ — run straight from the checkout
+python -m scorerune --version
+
+# Optional: install so the `scorerune` command is on PATH
+python -m pip install .
+```
+
+```bash
+# .NET 9 — restore is framework-only, no NuGet packages are pulled
+dotnet build -c Release runtime/ScoreRune.Runtime.csproj
+```
+
+---
+
+## Usage
+
+### Rank a batch of candidates
+
+The repository ships a support-reply rubric and three drafts. Rank them:
+
+```bash
+python -m scorerune rank -r examples/rubric.json -c examples/candidates.json
+```
+
+```
+# Ranking for rubric `support-reply-v1`
+
+| Rank | Candidate | Total |
+|------|-----------|-------|
+| 1 | Draft A (structured) | 90.00% |
+| 2 | Draft C (wordy, no list) | 89.60% |
+| 3 | Draft B (terse) | 0.00% |
+```
+
+Below the table, ScoreRune prints a full scorecard per candidate with a weighted
