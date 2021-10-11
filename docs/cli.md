@@ -40,3 +40,10 @@ scorerune validate -r RUBRIC.json [-c CANDIDATES.json]
 ```
 
 ## Exit codes
+
+| code | meaning |
+|------|---------|
+| `0` | success |
+| `2` | load or validation error (message on stderr) |
+
+## Piping
