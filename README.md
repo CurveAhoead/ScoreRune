@@ -46,3 +46,53 @@ of drafts, and produce a scorecard you can attach to a pull request.
 
 ---
 
+## Architecture
+
+ScoreRune is organized as a thin pipeline. Documents come in as JSON or plain
+text, the engine scores each criterion with a pure function, weights are
+normalized and combined, and a reporter renders the result. The same shape is
+implemented twice, once per runtime.
+
+<p align="center">
+  <img src="assets/pipeline.svg" alt="ScoreRune scoring pipeline" width="720"/>
+</p>
+
+```
+                        ┌─────────────────────────────────────────────┐
+                        │                  loader                      │
+   rubric.json  ───────▶│  parse + validate → Rubric                   │
+   candidates.json ────▶│  parse + validate → [Candidate]              │
+                        └───────────────────────┬─────────────────────┘
+                                                 │
+                                                 ▼
+                        ┌─────────────────────────────────────────────┐
+                        │                  engine                      │
+                        │  for each criterion:                         │
+                        │    scorer = dispatch[kind]                   │
+                        │    raw    = scorer(text, params)   ∈ [0,1]   │
+                        │    nw     = weight / Σ weights               │
+                        │    part   = raw · nw                         │
+                        │  total = Σ part                     ∈ [0,1]  │
+                        └───────────────────────┬─────────────────────┘
+                                                 │
+                                                 ▼
+                        ┌─────────────────────────────────────────────┐
+                        │                  report                      │
+                        │  Scorecard / Ranking  →  Markdown | JSON     │
+                        └─────────────────────────────────────────────┘
+```
+
+### Module map (Python)
+
+| module | responsibility |
+|--------|----------------|
+| `scorerune/model.py` | value objects: `Criterion`, `Rubric`, `Candidate`, `CriterionResult`, `Scorecard`, `Ranking`, plus `to_dict`/`from_dict` and validation |
+| `scorerune/loader.py` | JSON/text loading with eager validation and a single aggregated `LoadError` |
+| `scorerune/engine.py` | the four pure scorers, `score_criterion`, `score_candidate`, `rank_candidates` |
+| `scorerune/report.py` | Markdown and JSON renderers with ASCII score bars |
+| `scorerune/cli.py` | `argparse`-based `score` / `rank` / `validate` subcommands |
+
+### Module map (.NET)
+
+| file | responsibility |
+|------|----------------|
