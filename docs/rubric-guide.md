@@ -44,3 +44,13 @@ Scores word count against a window.
 Without `ideal_words`, any count inside `[min, max]` scores `1.0`, and counts
 outside fall off linearly. With `ideal_words`, the score peaks at the ideal and
 tapers toward the bounds.
+
+### keyword_density
+
+Measures how often keywords occur per 100 words.
+
+| param | type | default | meaning |
+|-------|------|---------|---------|
+| `keywords` | list[str] | `[]` | words to count (case-insensitive) |
+| `target` | float | `2.0` | desired occurrences per 100 words |
+| `tolerance` | float | `1.0` | band around target that still scores `1.0` |
