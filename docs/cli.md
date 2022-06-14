@@ -23,3 +23,10 @@ Score a batch of candidates and print them best-first.
 
 ```
 scorerune rank -r RUBRIC.json -c CANDIDATES.json [-f md|json]
+```
+
+- `-c, --candidates` — a JSON array of candidate objects, or an object with a
+  `candidates` array. Each candidate has `id`, `text`, and optional `label`.
+
+Ordering is deterministic: descending total, with candidate id as a stable
+tie-break.
