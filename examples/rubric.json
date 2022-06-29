@@ -24,3 +24,9 @@
         "mode": "any"
       }
     },
+    {
+      "id": "length-window",
+      "title": "Reasonable reply length",
+      "weight": 2.0,
+      "kind": "length",
+      "params": { "min_words": 40, "max_words": 180, "ideal_words": 90 }
