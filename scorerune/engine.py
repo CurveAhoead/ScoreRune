@@ -157,3 +157,29 @@ def score_criterion(criterion: Criterion, text: str,
         weight=criterion.weight,
         normalized_weight=normalized_weight,
         weighted_score=raw * normalized_weight,
+        evidence=evidence,
+    )
+
+
+def score_candidate(rubric: Rubric, candidate: Candidate) -> Scorecard:
+    total_weight = rubric.total_weight() or 1.0
+    results: list[CriterionResult] = []
+    for c in rubric.criteria:
+        nw = c.weight / total_weight
+        results.append(score_criterion(c, candidate.text, nw))
+    total = sum(r.weighted_score for r in results)
+    return Scorecard(
+        candidate_id=candidate.id,
+        label=candidate.label or candidate.id,
+        rubric_id=rubric.id,
+        total=_clamp01(total),
+        results=results,
+    )
+
+
+def rank_candidates(rubric: Rubric,
+                    candidates: list[Candidate]) -> Ranking:
+    cards = [score_candidate(rubric, c) for c in candidates]
+    # Stable, deterministic ordering: descending score, then candidate id.
+    cards.sort(key=lambda s: (-s.total, s.candidate_id))
+# review note: scorers stay pure functions
