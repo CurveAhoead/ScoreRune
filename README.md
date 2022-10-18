@@ -146,3 +146,54 @@ python -m pip install .
 
 ```bash
 # .NET 9 — restore is framework-only, no NuGet packages are pulled
+dotnet build -c Release runtime/ScoreRune.Runtime.csproj
+```
+
+---
+
+## Usage
+
+### Rank a batch of candidates
+
+The repository ships a support-reply rubric and three drafts. Rank them:
+
+```bash
+python -m scorerune rank -r examples/rubric.json -c examples/candidates.json
+```
+
+```
+# Ranking for rubric `support-reply-v1`
+
+| Rank | Candidate | Total |
+|------|-----------|-------|
+| 1 | Draft A (structured) | 90.00% |
+| 2 | Draft C (wordy, no list) | 89.60% |
+| 3 | Draft B (terse) | 0.00% |
+```
+
+Below the table, ScoreRune prints a full scorecard per candidate with a weighted
+table, ASCII bars, and an evidence section. Draft A wins because it acknowledges
+the issue, gives next steps, sits near the ideal length, and uses a list. Draft C
+scores nearly as well on content but loses the structure criterion because it is
+a single paragraph with no list. Draft B fails everything — it is too short and
+mentions none of the expected phrases.
+
+### Score a single response
+
+```bash
+python -m scorerune score -r examples/rubric.json -c examples/candidate-a.txt
+```
+
+```
+# Scorecard: candidate-a
+
+- Rubric: `support-reply-v1`
+- Candidate: `candidate-a`
+- **Total: 90.00%**
+
+| Criterion | Raw | Weight | Weighted | Bar |
+|-----------|-----|--------|----------|-----|
+| Acknowledges the customer's issue | 1.00 | 0.30 | 0.300 | `####################` |
+| Provides concrete next steps | 1.00 | 0.40 | 0.400 | `####################` |
+| Reasonable reply length | 0.50 | 0.20 | 0.100 | `##########..........` |
+| Readable structure | 1.00 | 0.10 | 0.100 | `####################` |
