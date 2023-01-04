@@ -2,31 +2,3 @@
   "id": "support-reply-v1",
   "title": "Customer Support Reply Quality",
   "description": "Reviews AI-drafted support replies for coverage, tone, structure, and appropriate length.",
-  "criteria": [
-    {
-      "id": "acknowledges-issue",
-      "title": "Acknowledges the customer's issue",
-      "weight": 3.0,
-      "kind": "phrase",
-      "params": {
-        "phrases": ["sorry", "understand", "apologize"],
-        "mode": "any"
-      },
-      "description": "At least one empathy phrase should appear."
-    },
-    {
-      "id": "provides-next-steps",
-      "title": "Provides concrete next steps",
-      "weight": 4.0,
-      "kind": "phrase",
-      "params": {
-        "phrases": ["step", "next", "follow", "resolve"],
-        "mode": "any"
-      }
-    },
-    {
-      "id": "length-window",
-      "title": "Reasonable reply length",
-      "weight": 2.0,
-      "kind": "length",
-      "params": { "min_words": 40, "max_words": 180, "ideal_words": 90 }
