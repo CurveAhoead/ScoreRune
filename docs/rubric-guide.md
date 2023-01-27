@@ -15,3 +15,13 @@ same as one with `30, 40, 20, 10`.
   ]
 }
 ```
+
+## Evidence kinds
+
+### phrase
+
+Checks for literal substrings.
+
+| param | type | default | meaning |
+|-------|------|---------|---------|
+| `phrases` | list[str] | `[]` | substrings to look for |
