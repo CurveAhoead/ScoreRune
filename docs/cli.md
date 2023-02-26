@@ -30,3 +30,10 @@ scorerune rank -r RUBRIC.json -c CANDIDATES.json [-f md|json]
 
 Ordering is deterministic: descending total, with candidate id as a stable
 tie-break.
+
+## validate
+
+Load a rubric (and optionally candidates) and report status.
+
+```
+scorerune validate -r RUBRIC.json [-c CANDIDATES.json]
