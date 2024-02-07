@@ -3,3 +3,9 @@
     {
       "id": "draft-a",
       "label": "Draft A (structured)",
+      "text": "Hi Jordan,\n\nI'm sorry for the trouble with your invoice, and I understand how disruptive a billing error can be.\n\nHere are the next steps we'll take to resolve this:\n\n- I've flagged the duplicate charge for reversal.\n- You should see the refund within three business days.\n- I'll follow up personally once it clears.\n\nPlease reply if anything looks off, and I'll jump right back in."
+    },
+    {
+      "id": "draft-b",
+      "label": "Draft B (terse)",
+      "text": "Refund issued. It will show up soon."
