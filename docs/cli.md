@@ -37,3 +37,9 @@ Load a rubric (and optionally candidates) and report status.
 
 ```
 scorerune validate -r RUBRIC.json [-c CANDIDATES.json]
+```
+
+## Exit codes
+
+| code | meaning |
+|------|---------|
