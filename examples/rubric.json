@@ -14,3 +14,9 @@
       },
       "description": "At least one empathy phrase should appear."
     },
+    {
+      "id": "provides-next-steps",
+      "title": "Provides concrete next steps",
+      "weight": 4.0,
+      "kind": "phrase",
+      "params": {
