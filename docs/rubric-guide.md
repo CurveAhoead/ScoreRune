@@ -54,3 +54,12 @@ Measures how often keywords occur per 100 words.
 | `keywords` | list[str] | `[]` | words to count (case-insensitive) |
 | `target` | float | `2.0` | desired occurrences per 100 words |
 | `tolerance` | float | `1.0` | band around target that still scores `1.0` |
+
+Density outside the tolerance band falls off linearly, scaled by `target`.
+
+### structure
+
+Checks Markdown-ish structural features.
+
+| param | type | default | meaning |
+|-------|------|---------|---------|
