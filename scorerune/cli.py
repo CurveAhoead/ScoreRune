@@ -93,3 +93,21 @@ def _cmd_validate(args: argparse.Namespace) -> int:
 
 _HANDLERS = {
     "score": _cmd_score,
+    "rank": _cmd_rank,
+    "validate": _cmd_validate,
+}
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = _build_parser()
+    args = parser.parse_args(argv)
+    handler = _HANDLERS[args.command]
+    try:
+        return handler(args)
+    except LoadError as exc:
+        sys.stderr.write(f"error: {exc}\n")
+        return 2
+
+
+if __name__ == "__main__":
+# review note: rank tie-break documented
