@@ -189,3 +189,33 @@ public static class Engine
         double totalWeight = rubric.TotalWeight();
         if (totalWeight == 0) totalWeight = 1.0;
         var results = new List<CriterionResult>();
+        double total = 0;
+        foreach (var c in rubric.Criteria)
+        {
+            double nw = c.Weight / totalWeight;
+            var r = ScoreCriterion(c, candidate.Text, nw);
+            results.Add(r);
+            total += r.WeightedScore;
+        }
+        return new Scorecard
+        {
+            CandidateId = candidate.Id,
+            Label = string.IsNullOrEmpty(candidate.Label) ? candidate.Id : candidate.Label,
+            RubricId = rubric.Id,
+            Total = Clamp01(total),
+            Results = results,
+        };
+    }
+
+    public static List<Scorecard> RankCandidates(Rubric rubric, List<Candidate> candidates)
+    {
+        var cards = new List<Scorecard>();
+        foreach (var c in candidates) cards.Add(ScoreCandidate(rubric, c));
+        cards.Sort((a, b) =>
+        {
+            int byScore = b.Total.CompareTo(a.Total);
+            return byScore != 0 ? byScore : string.CompareOrdinal(a.CandidateId, b.CandidateId);
+        });
+        return cards;
+    }
+}
