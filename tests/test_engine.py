@@ -29,3 +29,12 @@ class EngineTests(unittest.TestCase):
 
     def test_criterion_ids_present(self):
         card = score_candidate(self.rubric, self.candidates[0])
+        ids = {r.criterion_id for r in card.results}
+        expected = {cr.id for cr in self.rubric.criteria}
+        self.assertEqual(ids, expected)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
