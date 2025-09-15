@@ -46,3 +46,16 @@ public sealed record CriterionResult
     [JsonPropertyName("raw_score")] public double RawScore { get; init; }
     [JsonPropertyName("weight")] public double Weight { get; init; }
     [JsonPropertyName("normalized_weight")] public double NormalizedWeight { get; init; }
+    [JsonPropertyName("weighted_score")] public double WeightedScore { get; init; }
+    [JsonPropertyName("evidence")] public List<string> Evidence { get; init; } = new();
+}
+
+public sealed record Scorecard
+{
+    [JsonPropertyName("candidate_id")] public string CandidateId { get; init; } = "";
+    [JsonPropertyName("label")] public string Label { get; init; } = "";
+    [JsonPropertyName("rubric_id")] public string RubricId { get; init; } = "";
+    [JsonPropertyName("total")] public double Total { get; init; }
+    [JsonPropertyName("percent")] public double Percent => Math.Round(Total * 100.0, 2);
+    [JsonPropertyName("results")] public List<CriterionResult> Results { get; init; } = new();
+}
