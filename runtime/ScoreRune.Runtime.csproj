@@ -7,3 +7,7 @@
     <Nullable>enable</Nullable>
     <AssemblyName>scorerune</AssemblyName>
     <RootNamespace>ScoreRune.Runtime</RootNamespace>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+</Project>
