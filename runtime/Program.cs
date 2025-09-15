@@ -152,3 +152,30 @@ public static class Program
         var cards = Engine.RankCandidates(rubric, candidates);
         string fmt = Opt(args, "-f", Opt(args, "--format", "md"));
         if (fmt == "json")
+        {
+            Console.Write(JsonSerializer.Serialize(cards, WriteOpts) + "\n");
+            return 0;
+        }
+        var sb = new StringBuilder();
+        sb.AppendLine($"# Ranking for rubric `{rubric.Id}`").AppendLine();
+        sb.AppendLine("| Rank | Candidate | Total |");
+        sb.AppendLine("|------|-----------|-------|");
+        for (int i = 0; i < cards.Count; i++)
+            sb.AppendLine($"| {i + 1} | {cards[i].Label} | {cards[i].Percent:F2}% |");
+        Console.Write(sb.ToString().TrimEnd() + "\n");
+        return 0;
+    }
+
+    private static int CmdValidate(string[] args)
+    {
+        var rubric = LoadRubric(Opt(args, "-r", Opt(args, "--rubric")));
+        Console.WriteLine($"rubric '{rubric.Id}' OK: {rubric.Criteria.Count} criteria, total weight {rubric.TotalWeight():G}");
+        string cpath = Opt(args, "-c", Opt(args, "--candidates"));
+        if (!string.IsNullOrEmpty(cpath))
+        {
+            var candidates = LoadCandidates(cpath);
+            Console.WriteLine($"candidates OK: {candidates.Count} loaded");
+        }
+        return 0;
+    }
+}
