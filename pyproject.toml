@@ -12,3 +12,10 @@ license = { text = "Apache-2.0" }
 authors = [{ name = "ScoreRune contributors" }]
 keywords = ["rubric", "scoring", "evaluation", "cli", "deterministic"]
 
+[project.scripts]
+scorerune = "scorerune.cli:main"
+
+[tool.setuptools]
+packages = ["scorerune"]
+
+# draft note 3
