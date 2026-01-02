@@ -52,3 +52,11 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - rubric loader with schema validation
 - candidate batch loader (JSON)
+
+## [0.1.0] - 2014-10-20
+
+### Added
+- initial public release
+- core scoring engine (pure functions, no I/O)
+
+# draft note 1
