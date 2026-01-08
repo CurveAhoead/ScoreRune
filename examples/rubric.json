@@ -10,3 +10,35 @@
       "kind": "phrase",
       "params": {
         "phrases": ["sorry", "understand", "apologize"],
+        "mode": "any"
+      },
+      "description": "At least one empathy phrase should appear."
+    },
+    {
+      "id": "provides-next-steps",
+      "title": "Provides concrete next steps",
+      "weight": 4.0,
+      "kind": "phrase",
+      "params": {
+        "phrases": ["step", "next", "follow", "resolve"],
+        "mode": "any"
+      }
+    },
+    {
+      "id": "length-window",
+      "title": "Reasonable reply length",
+      "weight": 2.0,
+      "kind": "length",
+      "params": { "min_words": 40, "max_words": 180, "ideal_words": 90 }
+    },
+    {
+      "id": "readable-structure",
+      "title": "Readable structure",
+      "weight": 1.0,
+      "kind": "structure",
+      "params": { "require_lists": true, "min_paragraphs": 2 }
+    }
+  ]
+}
+
+# draft note 6
