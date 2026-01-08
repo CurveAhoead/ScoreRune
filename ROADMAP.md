@@ -20,3 +20,14 @@ describe where the engine is headed.
 - [x] **Cross-runtime parity (Python + .NET)** — `runtime/Program.cs` mirrors the
   CLI and produces identical totals to the Python engine on the shared example
   rubric and candidate batch (verified: 90.00%, 89.60%, 0.00%).
+
+## Planned
+
+- [ ] Regex-evidence criterion kind with capture-group counting.
+- [ ] Rubric composition (include/extend one rubric from another).
+- [ ] HTML scorecard export with the violet/gold theme baked in.
+- [ ] Weighted-criterion presets bundled as named rubric templates.
+- [ ] CSV batch export for spreadsheet review workflows.
+- [ ] Configurable falloff curves per length criterion (linear vs. cosine).
+
+# draft note 7
