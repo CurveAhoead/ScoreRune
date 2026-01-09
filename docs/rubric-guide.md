@@ -59,3 +59,21 @@ Density outside the tolerance band falls off linearly, scaled by `target`.
 
 ### structure
 
+Checks Markdown-ish structural features.
+
+| param | type | default | meaning |
+|-------|------|---------|---------|
+| `require_headings` | bool | `false` | at least one `#`-style heading |
+| `require_lists` | bool | `false` | at least one bullet or numbered item |
+| `min_paragraphs` | int | `0` | blank-line-separated blocks required |
+
+The score is the fraction of configured requirements that are satisfied.
+
+## Validation
+
+`scorerune validate -r rubric.json` loads the rubric and reports the criterion
+count and total weight. Validation fails (exit code `2`) when the rubric has no
+criteria, a criterion has a non-positive weight, a criterion uses an unknown
+kind, or two criteria share an id.
+
+# draft note 9
