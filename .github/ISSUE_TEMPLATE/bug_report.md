@@ -11,3 +11,13 @@ labels: bug
 **Minimal reproducer**
 
 ```
+python -m scorerune rank -r rubric.json -c candidates.json -f json
+```
+
+**Environment**
+
+- scorerune version (`python -m scorerune --version`):
+- Python version / .NET version:
+- OS:
+
+# draft note 12
