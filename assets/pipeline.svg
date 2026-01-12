@@ -45,3 +45,18 @@
     <line x1="292" y1="110" x2="360" y2="110" marker-end="url(#arrow)"/>
     <line x1="472" y1="110" x2="554" y2="110" marker-end="url(#arrow)"/>
   </g>
+
+  <!-- Travelling token that flows along the pipeline -->
+  <circle r="6" fill="#f6d365">
+    <animateMotion dur="3s" repeatCount="indefinite"
+      path="M60,110 L240,110 L420,110 L620,110" keyPoints="0;0.33;0.66;1"
+      keyTimes="0;0.33;0.66;1" calcMode="linear"/>
+    <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.1;0.5;0.9;1"
+             dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="360" y="210" text-anchor="middle" font-family="Georgia, serif"
+        font-size="12" fill="#9a86d6">deterministic · dependency-free · Python + .NET parity</text>
+</svg>
+
+# draft note 19
