@@ -25,3 +25,17 @@ demo:
 
 ## Rank the example batch with the C# runtime.
 demo-cs: dotnet-build
+	$(DOTNET) run -c Release --no-build --project $(RUNTIME) -- \
+		rank -r examples/rubric.json -c examples/candidates.json -f md
+
+## Validate the example rubric and candidates.
+validate:
+	$(PY) -m scorerune validate -r examples/rubric.json -c examples/candidates.json
+
+## Remove build artifacts.
+clean:
+	$(DOTNET) clean -c Release $(RUNTIME) || true
+	rm -rf runtime/bin runtime/obj
+	find scorerune -name __pycache__ -type d -exec rm -rf {} +
+
+# draft note 18
