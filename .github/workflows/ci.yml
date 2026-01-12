@@ -22,3 +22,15 @@ jobs:
           python -m scorerune rank -r examples/rubric.json -c examples/candidates.json -f json
 
   dotnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+      - name: Build runtime (Release)
+        run: dotnet build -c Release runtime/ScoreRune.Runtime.csproj
+      - name: Smoke-run runtime
+        run: dotnet run -c Release --project runtime/ScoreRune.Runtime.csproj -- rank -r examples/rubric.json -c examples/candidates.json -f json
+
+# draft note 17
