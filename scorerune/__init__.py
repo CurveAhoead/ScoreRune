@@ -28,3 +28,13 @@ __all__ = [
     "CriterionResult",
     "Ranking",
     "Rubric",
+    "Scorecard",
+    "score_candidate",
+    "score_criterion",
+    "rank_candidates",
+    "load_rubric",
+    "load_candidates",
+    "load_candidate_text",
+    "LoadError",
+    "__version__",
+]
