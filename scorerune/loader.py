@@ -75,4 +75,4 @@ def load_candidate_text(path: str | Path, candidate_id: str = "") -> Candidate:
         raise LoadError(f"file not found: {p}")
     text = p.read_text(encoding="utf-8")
     cid = candidate_id or p.stem
-# review note: loader must fail fast on bad schema
+    return Candidate(id=cid, text=text, label=cid)
