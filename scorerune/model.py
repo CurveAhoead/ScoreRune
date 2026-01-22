@@ -198,4 +198,4 @@ class Ranking:
                 for i, s in enumerate(self.scorecards)
             ],
             "scorecards": [s.to_dict() for s in self.scorecards],
-# review note: keep evidence additive
+        }
