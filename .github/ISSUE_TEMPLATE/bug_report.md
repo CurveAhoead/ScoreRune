@@ -20,4 +20,4 @@ python -m scorerune rank -r rubric.json -c candidates.json -f json
 - Python version / .NET version:
 - OS:
 
-# draft note 12
+# draft note 32
