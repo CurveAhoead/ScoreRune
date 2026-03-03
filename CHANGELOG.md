@@ -59,4 +59,4 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - initial public release
 - core scoring engine (pure functions, no I/O)
 
-# draft note 21
+# draft note 1
