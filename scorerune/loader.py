@@ -76,3 +76,5 @@ def load_candidate_text(path: str | Path, candidate_id: str = "") -> Candidate:
     text = p.read_text(encoding="utf-8")
     cid = candidate_id or p.stem
     return Candidate(id=cid, text=text, label=cid)
+
+# draft note 4
