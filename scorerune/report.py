@@ -53,3 +53,17 @@ def ranking_markdown(ranking: Ranking) -> str:
         lines.append(f"| {i + 1} | {card.label} | {card.percent():.2f}% |")
     lines.append("")
     for card in ranking.scorecards:
+        lines.append("---")
+        lines.append("")
+        lines.append(scorecard_markdown(card))
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def scorecard_json(card: Scorecard) -> str:
+    return json.dumps(card.to_dict(), indent=2, sort_keys=True) + "\n"
+
+
+def ranking_json(ranking: Ranking) -> str:
+    return json.dumps(ranking.to_dict(), indent=2, sort_keys=True) + "\n"
+
+# draft note 6
