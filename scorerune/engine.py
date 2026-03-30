@@ -183,5 +183,3 @@ def rank_candidates(rubric: Rubric,
     # Stable, deterministic ordering: descending score, then candidate id.
     cards.sort(key=lambda s: (-s.total, s.candidate_id))
     return Ranking(rubric_id=rubric.id, scorecards=cards)
-
-# draft note 5
