@@ -110,4 +110,6 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-# review note: rank tie-break documented
+    raise SystemExit(main())
+
+# draft note 8
