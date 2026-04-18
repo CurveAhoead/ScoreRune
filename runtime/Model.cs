@@ -59,3 +59,5 @@ public sealed record Scorecard
     [JsonPropertyName("percent")] public double Percent => Math.Round(Total * 100.0, 2);
     [JsonPropertyName("results")] public List<CriterionResult> Results { get; init; } = new();
 }
+
+// draft note 13
