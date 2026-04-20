@@ -30,4 +30,4 @@ describe where the engine is headed.
 - [ ] CSV batch export for spreadsheet review workflows.
 - [ ] Configurable falloff curves per length criterion (linear vs. cosine).
 
-# draft note 27
+# draft note 19
