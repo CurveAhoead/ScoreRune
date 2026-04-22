@@ -76,4 +76,4 @@ count and total weight. Validation fails (exit code `2`) when the rubric has no
 criteria, a criterion has a non-positive weight, a criterion uses an unknown
 kind, or two criteria share an id.
 
-# draft note 29
+# draft note 21
