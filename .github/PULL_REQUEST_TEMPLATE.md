@@ -13,4 +13,4 @@
 
 <!-- if scoring changed: before/after totals on examples/candidates.json -->
 
-# draft note 35
+# draft note 27
