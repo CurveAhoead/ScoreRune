@@ -16,4 +16,4 @@ labels: enhancement
 
 <!-- other approaches you thought about -->
 
-# draft note 34
+# draft note 26
