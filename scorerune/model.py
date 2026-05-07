@@ -200,4 +200,4 @@ class Ranking:
             "scorecards": [s.to_dict() for s in self.scorecards],
         }
 
-# draft note 3
+# draft note 35
