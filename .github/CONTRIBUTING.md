@@ -19,4 +19,4 @@ the C# runtime targets net9.0 with no package references.
 3. `make validate` and `make demo` / `make demo-cs` must show identical totals.
 4. Keep commits conventional (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 
-# draft note 23
+# draft note 55
