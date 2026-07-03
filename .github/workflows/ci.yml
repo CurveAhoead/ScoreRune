@@ -33,4 +33,4 @@ jobs:
       - name: Smoke-run runtime
         run: dotnet run -c Release --project runtime/ScoreRune.Runtime.csproj -- rank -r examples/rubric.json -c examples/candidates.json -f json
 
-# draft note 29
+# draft note 61
