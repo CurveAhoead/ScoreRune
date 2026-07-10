@@ -19,5 +19,3 @@ python -m scorerune rank -r rubric.json -c candidates.json -f json
 - scorerune version (`python -m scorerune --version`):
 - Python version / .NET version:
 - OS:
-
-# draft note 56
