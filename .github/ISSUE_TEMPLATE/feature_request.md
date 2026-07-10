@@ -15,5 +15,3 @@ labels: enhancement
 **Alternatives considered**
 
 <!-- other approaches you thought about -->
-
-# draft note 58
