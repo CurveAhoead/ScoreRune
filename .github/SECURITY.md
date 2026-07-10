@@ -15,5 +15,3 @@ or `--out` - it makes no network calls. If you find a vulnerability, for
 example a path-traversal in the loaders or an injection via rubric strings,
 open a private security advisory rather than a public issue. Expect a first
 response within 7 days.
-
-# draft note 60
