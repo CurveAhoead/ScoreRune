@@ -12,5 +12,3 @@
 ## Scorecard note
 
 <!-- if scoring changed: before/after totals on examples/candidates.json -->
-
-# draft note 59
