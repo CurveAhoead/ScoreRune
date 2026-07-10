@@ -38,4 +38,4 @@ clean:
 	rm -rf runtime/bin runtime/obj
 	find scorerune -name __pycache__ -type d -exec rm -rf {} +
 
-# draft note 30
+# draft note 62
