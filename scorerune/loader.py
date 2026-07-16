@@ -77,4 +77,4 @@ def load_candidate_text(path: str | Path, candidate_id: str = "") -> Candidate:
     cid = candidate_id or p.stem
     return Candidate(id=cid, text=text, label=cid)
 
-# draft note 36
+# draft note 68
