@@ -184,4 +184,4 @@ def rank_candidates(rubric: Rubric,
     cards.sort(key=lambda s: (-s.total, s.candidate_id))
     return Ranking(rubric_id=rubric.id, scorecards=cards)
 
-# draft note 37
+# draft note 69
