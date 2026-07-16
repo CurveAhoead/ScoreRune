@@ -66,4 +66,4 @@ def scorecard_json(card: Scorecard) -> str:
 def ranking_json(ranking: Ranking) -> str:
     return json.dumps(ranking.to_dict(), indent=2, sort_keys=True) + "\n"
 
-# draft note 38
+# draft note 70
