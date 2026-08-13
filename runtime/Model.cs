@@ -60,4 +60,4 @@ public sealed record Scorecard
     [JsonPropertyName("results")] public List<CriterionResult> Results { get; init; } = new();
 }
 
-// draft note 45
+// draft note 77
