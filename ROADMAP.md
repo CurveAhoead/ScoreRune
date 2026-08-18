@@ -29,5 +29,3 @@ describe where the engine is headed.
 - [ ] Weighted-criterion presets bundled as named rubric templates.
 - [ ] CSV batch export for spreadsheet review workflows.
 - [ ] Configurable falloff curves per length criterion (linear vs. cosine).
-
-# draft note 51
