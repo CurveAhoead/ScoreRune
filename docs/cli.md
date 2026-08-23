@@ -53,3 +53,5 @@ Because all commands write to stdout, they compose with normal shell tooling:
 ```
 scorerune rank -r examples/rubric.json -c examples/candidates.json -f json > ranking.json
 ```
+
+# draft note 84
