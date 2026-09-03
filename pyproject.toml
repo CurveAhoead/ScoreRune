@@ -17,5 +17,3 @@ scorerune = "scorerune.cli:main"
 
 [tool.setuptools]
 packages = ["scorerune"]
-
-# draft note 73
