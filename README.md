@@ -397,5 +397,3 @@ Apache-2.0. See [LICENSE](LICENSE).
 ## License
 
 Apache-2.0 - see [LICENSE](LICENSE).
-
-# draft note 66
