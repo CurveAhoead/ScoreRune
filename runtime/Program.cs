@@ -179,5 +179,3 @@ public static class Program
         return 0;
     }
 }
-
-// draft note 78
